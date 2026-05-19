@@ -1,539 +1,686 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#ffffff">
-    
-    <title>Nomi电竞社 - 顶尖电竞陪玩 / Premium E-Sports Companions</title>
-    <meta name="description" content="Nomi电竞社 - 海外电竞陪玩 VIP 余额安全充值，由上海糯咪科技有限公司运营，支持 PayPal 加密支付。">
-    <meta name="keywords" content="Nomi电竞社, 电竞陪玩, VIP充值, KOOK, PayPal">
-    <meta name="author" content="Shanghai Nuomi Technology Co., Ltd.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="theme-color" content="#eef7ff" />
+  <title>Nomi电竞社 - 顶尖电竞陪玩 / Premium E-Sports Companions</title>
+  <meta name="description" content="Nomi电竞社 - 海外电竞陪玩 VIP 余额安全充值，由上海糯咪科技有限公司运营，支持 PayPal 加密支付。" />
+  <meta name="keywords" content="Nomi电竞社, 电竞陪玩, VIP充值, KOOK, PayPal" />
+  <meta name="author" content="Shanghai Nuomi Technology Co., Ltd." />
+  <link rel="preconnect" href="https://www.paypal.com" />
+  <link rel="preconnect" href="https://www.paypalobjects.com" />
 
-    <link rel="preconnect" href="https://www.paypal.com">
-    <link rel="preconnect" href="https://www.paypalobjects.com">
+  <style>
+    :root {
+      --primary: #5b8cff;
+      --primary-2: #86d7ff;
+      --pink: #ff9fd2;
+      --mint: #8ef0dc;
+      --ink: #172033;
+      --muted: #68758c;
+      --soft: #f7fbff;
+      --card: rgba(255,255,255,.78);
+      --line: rgba(112, 144, 176, .18);
+      --shadow: 0 28px 90px rgba(91, 140, 255, .16);
+      --shadow-small: 0 14px 36px rgba(91, 140, 255, .12);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
 
-    <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--ink);
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 18% 8%, rgba(134,215,255,.34), transparent 28%),
+        radial-gradient(circle at 86% 14%, rgba(255,159,210,.32), transparent 28%),
+        radial-gradient(circle at 58% 86%, rgba(142,240,220,.22), transparent 30%),
+        linear-gradient(180deg, #f2f8ff 0%, #fff8fd 48%, #f8fbff 100%);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(91,140,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91,140,255,.045) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), transparent 74%);
+      z-index: -2;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto -12% -20% auto;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(91,140,255,.16), transparent 67%);
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(10px);
+    }
 
-        :root {
-            --primary:#4f8cff; --primary-hover:#2f6be8; --pink:#ff9ecb;
-            --bg-color:#f8fbff; --text-main:#162033; --text-muted:#66758c;
-            --border-color:rgba(148,163,184,.22); --border-focus:#4f8cff;
-            --shadow:0 24px 70px rgba(79,140,255,.14);
-            --card-shadow:0 18px 45px rgba(21,43,80,.08);
-            --font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-        }
-        *{box-sizing:border-box} html{scroll-behavior:smooth} a{color:inherit}
-        body{font-family:var(--font-family);margin:0;color:var(--text-main);display:flex;flex-direction:column;align-items:center;overflow-x:hidden;background:radial-gradient(circle at 8% 12%,rgba(117,180,255,.26),transparent 28%),radial-gradient(circle at 92% 5%,rgba(255,158,203,.3),transparent 26%),linear-gradient(180deg,#f7fbff 0,#fff 48%,#f8fbff 100%)}
-        body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(79,140,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(79,140,255,.045) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,#000,transparent 72%);z-index:-1}
-        button,.nav-logo,.floating-kook-btn{user-select:none}
-        .navbar{width:100%;display:flex;justify-content:center;position:fixed;top:0;z-index:1000;padding:12px 0;background:rgba(248,251,255,.72);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.72)}
-        .nav-content{width:min(92%,1160px);display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border:1px solid rgba(255,255,255,.72);border-radius:999px;background:rgba(255,255,255,.66);box-shadow:0 10px 30px rgba(79,140,255,.08)}
-        .nav-logo{display:inline-flex;align-items:center;gap:8px;font-size:20px;font-weight:900;color:var(--primary);text-decoration:none;letter-spacing:-.6px}.nav-logo:before{content:"✦";width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;color:#fff;background:linear-gradient(135deg,var(--primary),var(--pink));box-shadow:0 10px 22px rgba(79,140,255,.28)}
-        .nav-links{display:flex;align-items:center;gap:8px}.nav-links a{text-decoration:none;color:var(--text-main);font-size:14px;font-weight:700;cursor:pointer;transition:.2s;padding:9px 14px;border-radius:999px}.nav-links a:hover{color:var(--primary);background:#eaf3ff}.lang-switch{border:0;color:#fff!important;padding:9px 15px;border-radius:999px;font-size:13px;font-weight:800;cursor:pointer;transition:.2s;background:linear-gradient(135deg,var(--primary),#78b7ff);box-shadow:0 10px 22px rgba(79,140,255,.2)}.lang-switch:hover{transform:translateY(-1px)}
-        .hero{width:min(92%,1160px);padding:150px 0 76px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:46px;align-items:center}.hero-copy{text-align:left}.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;margin-bottom:18px;border-radius:999px;color:#2f6be8;background:rgba(234,243,255,.92);border:1px solid rgba(79,140,255,.16);font-size:13px;font-weight:800}.hero h1{font-size:clamp(38px,5.2vw,66px);font-weight:950;margin:0 0 22px;color:#10192d;letter-spacing:-2.4px;line-height:1.04}.hero p{font-size:17px;line-height:1.9;color:var(--text-muted);margin:0 0 34px;max-width:650px;font-weight:500}.highlight-text{font-weight:900;background:linear-gradient(90deg,#2f6be8,#f078b2);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-        .hero-actions{display:flex;gap:14px;justify-content:flex-start;flex-wrap:wrap}.btn-primary,.btn-secondary{text-decoration:none;padding:15px 30px;font-size:15px;font-weight:900;border-radius:999px;transition:.22s;display:inline-flex;align-items:center;justify-content:center;min-width:150px}.btn-primary{background:linear-gradient(135deg,var(--primary),#82bdff);color:#fff;border:1px solid rgba(255,255,255,.5);box-shadow:0 18px 36px rgba(79,140,255,.28)}.btn-primary:hover,.btn-secondary:hover{transform:translateY(-2px)}.btn-primary:hover{background:linear-gradient(135deg,var(--primary-hover),#67adff)}.btn-secondary{background:rgba(255,255,255,.72);color:var(--primary);border:1px solid rgba(79,140,255,.2);box-shadow:0 12px 28px rgba(21,43,80,.06)}.btn-secondary:hover{background:#fff;border-color:rgba(79,140,255,.38)}
-        .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px;max-width:650px}.hero-stat{padding:14px 16px;border-radius:20px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.84);box-shadow:0 12px 28px rgba(21,43,80,.05);font-size:13px;color:var(--text-muted);font-weight:750}.hero-stat strong{display:block;color:#10192d;font-size:17px;margin-bottom:3px}
-        .hero-visual{position:relative;min-height:450px;border-radius:38px;padding:26px;background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(255,255,255,.58)),radial-gradient(circle at 80% 20%,rgba(255,158,203,.42),transparent 32%),radial-gradient(circle at 15% 80%,rgba(79,140,255,.35),transparent 40%);border:1px solid rgba(255,255,255,.86);box-shadow:var(--shadow);overflow:hidden}.hero-visual:before{content:"";position:absolute;width:180px;height:180px;right:-50px;top:-40px;border-radius:999px;background:rgba(255,158,203,.32)}.mascot-card{position:relative;z-index:1;min-height:398px;display:flex;flex-direction:column;justify-content:space-between}.mascot-top{display:flex;justify-content:space-between;align-items:center;gap:14px}.status-pill,.voice-pill{display:inline-flex;align-items:center;gap:8px;padding:10px 13px;border-radius:999px;background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.86);color:#2f6be8;font-size:13px;font-weight:900;box-shadow:0 12px 26px rgba(21,43,80,.07)}.status-dot{width:9px;height:9px;border-radius:50%;background:#26d07c;box-shadow:0 0 0 6px rgba(38,208,124,.12)}
-        .mascot-main{margin:24px auto 22px;width:min(100%,330px);aspect-ratio:1;position:relative;display:flex;align-items:center;justify-content:center}.mascot-circle{width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 50% 38%,#fff 0 20%,#dceeff 21% 44%,#b8dcff 45% 66%,#f9d9ea 67% 100%);box-shadow:inset 0 0 0 14px rgba(255,255,255,.45),0 24px 55px rgba(79,140,255,.2)}.fox-face{position:absolute;width:150px;height:118px;top:76px;left:50%;transform:translateX(-50%);background:linear-gradient(180deg,#fff,#eaf5ff);border-radius:44% 44% 48% 48%;box-shadow:0 12px 28px rgba(21,43,80,.08)}.fox-face:before,.fox-face:after{content:"";position:absolute;top:-42px;width:62px;height:78px;background:linear-gradient(145deg,#d8edff,#fff);border-radius:20px 48px 28px 48px;z-index:-1}.fox-face:before{left:2px;transform:rotate(-22deg)}.fox-face:after{right:2px;transform:rotate(22deg) scaleX(-1)}.fox-eye{position:absolute;top:46px;width:15px;height:15px;border-radius:50%;background:#45627e}.fox-eye.left{left:42px}.fox-eye.right{right:42px}.fox-smile{position:absolute;left:50%;top:72px;width:42px;height:22px;transform:translateX(-50%);border-bottom:3px solid #8aa0b5;border-radius:0 0 50px 50px}.headset{position:absolute;width:198px;height:126px;top:57px;left:50%;transform:translateX(-50%);border:10px solid rgba(79,140,255,.38);border-bottom:0;border-radius:100px 100px 0 0}.headset:before,.headset:after{content:"";position:absolute;bottom:-20px;width:28px;height:54px;border-radius:16px;background:linear-gradient(180deg,#6aa8ff,#ff9ecb)}.headset:before{left:-16px}.headset:after{right:-16px}.floating-heart{position:absolute;color:#ff8fc3;font-size:26px;animation:floaty 4s ease-in-out infinite}.floating-heart.one{left:26px;top:94px}.floating-heart.two{right:28px;bottom:88px;animation-delay:-1.4s;color:#74b5ff}@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}.mascot-bottom{display:grid;gap:12px}.chat-line{padding:14px 16px;border-radius:22px;background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.86);box-shadow:0 12px 26px rgba(21,43,80,.06);font-size:14px;font-weight:800}.chat-line.muted{color:var(--text-muted);font-weight:700}
-        .about-section{width:min(92%,1160px);padding:42px 0 80px;text-align:center}.about-section h2{font-size:clamp(26px,3vw,38px);color:#10192d;margin:0 0 34px;font-weight:950;letter-spacing:-1.2px}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.feature-card{background:rgba(255,255,255,.82);padding:34px 26px;text-align:left;border:1px solid rgba(255,255,255,.86);border-radius:30px;transition:.28s;box-shadow:var(--card-shadow);backdrop-filter:blur(14px)}.feature-card:hover{transform:translateY(-6px);border-color:rgba(79,140,255,.28);box-shadow:0 24px 58px rgba(79,140,255,.14)}.feature-icon{width:54px;height:54px;margin:0 0 22px;color:var(--primary);display:flex;align-items:center;justify-content:center;border-radius:20px;background:linear-gradient(135deg,#eaf3ff,#fff0f7)}.feature-icon svg{width:30px;height:30px;stroke-width:1.8}.feature-card h3{color:#10192d;font-size:19px;margin:0 0 14px;font-weight:950}.feature-card p{color:var(--text-muted);font-size:14px;line-height:1.85;margin:0;text-align:left;text-align-last:auto}
-        .payment-section{width:100%;display:flex;justify-content:center;padding:88px 5%;background:radial-gradient(circle at 12% 20%,rgba(255,158,203,.18),transparent 28%),radial-gradient(circle at 80% 70%,rgba(79,140,255,.2),transparent 30%),linear-gradient(180deg,rgba(234,243,255,.72),rgba(255,255,255,.92));border-top:1px solid rgba(148,163,184,.16)}.payment-shell{width:min(1120px,100%);display:grid;grid-template-columns:.86fr 1fr;gap:24px;align-items:stretch}.payment-side-card{border-radius:34px;padding:34px;background:linear-gradient(145deg,rgba(79,140,255,.92),rgba(116,181,255,.8) 52%,rgba(255,158,203,.76));color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden;min-height:420px}.payment-side-card:before{content:"";position:absolute;width:260px;height:260px;right:-90px;top:-90px;border-radius:50%;background:rgba(255,255,255,.2)}.payment-side-card h2{position:relative;margin:0 0 14px;font-size:34px;line-height:1.15;letter-spacing:-1.2px}.payment-side-card p{position:relative;margin:0 0 26px;line-height:1.8;color:rgba(255,255,255,.86);font-weight:650}.pay-steps{position:relative;display:grid;gap:14px;margin-top:28px}.pay-step{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:20px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(12px)}.pay-step span{width:28px;height:28px;flex:0 0 28px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;background:#fff;color:var(--primary);font-weight:950}.pay-step strong{display:block;font-size:15px;margin-bottom:4px}.pay-step em{font-style:normal;color:rgba(255,255,255,.8);font-size:13px;line-height:1.5}
-        .container{max-width:none;width:100%;background:rgba(255,255,255,.88);padding:34px;border:1px solid rgba(255,255,255,.9);box-shadow:var(--card-shadow);text-align:center;border-radius:34px;backdrop-filter:blur(16px)}.container h2{color:#10192d;margin:0 0 8px;font-size:28px;font-weight:950;letter-spacing:-.8px}.subtitle{color:var(--text-muted);margin-bottom:28px;font-size:14px;font-weight:650}label{display:block;font-size:14px;font-weight:900;margin-bottom:12px;color:#334155;text-align:left}.quick-amounts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}.quick-amounts button{padding:13px 0;border:1px solid rgba(79,140,255,.16);background:rgba(255,255,255,.76);color:var(--text-muted);cursor:pointer;font-weight:950;font-size:15px;transition:.2s;border-radius:16px}.quick-amounts button:hover{border-color:rgba(79,140,255,.36);color:var(--primary);transform:translateY(-1px)}.quick-amounts button.active{border-color:rgba(79,140,255,.52);color:#fff;background:linear-gradient(135deg,var(--primary),#83bdff);box-shadow:0 12px 24px rgba(79,140,255,.2)}select,input[type=number]{width:100%;padding:15px 16px;font-size:16px;font-weight:850;background-color:rgba(255,255,255,.84);color:#10192d;border:1px solid rgba(148,163,184,.24);border-radius:18px;outline:none;transition:.2s}select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:right 1rem center;background-size:1em}select:focus,input[type=number]:focus{border-color:var(--border-focus);box-shadow:0 0 0 4px rgba(79,140,255,.12);background:#fff}input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}input[type=number]{-moz-appearance:textfield}#custom-amount-container{display:none;margin-top:14px;animation:fadeIn .3s ease}@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}.fee-summary{margin-top:24px;padding:18px;text-align:left;font-size:14px;color:var(--text-muted);border:1px solid rgba(79,140,255,.12);background:linear-gradient(180deg,rgba(234,243,255,.68),rgba(255,255,255,.8));border-radius:22px}.fee-row{display:flex;justify-content:space-between;gap:14px;margin-bottom:12px}.fee-total{display:flex;justify-content:space-between;gap:14px;margin-top:14px;padding-top:14px;border-top:1px dashed rgba(79,140,255,.22);font-weight:950;font-size:18px;color:#10192d}.notice{font-size:13px;color:#475569;text-align:left;margin:24px 0;padding:16px;background:rgba(248,251,255,.92);border:1px solid rgba(79,140,255,.12);border-left:4px solid var(--primary);line-height:1.7;border-radius:18px}.checkbox-container{text-align:left;font-size:13.5px;display:flex;align-items:flex-start;justify-content:flex-start;margin-bottom:16px}.checkbox-container input[type=checkbox]{margin-right:10px;margin-top:3px;cursor:pointer;flex-shrink:0;accent-color:var(--primary)}.checkbox-container label{display:inline;color:var(--text-muted);line-height:1.55;font-weight:650}.checkbox-container a{color:var(--primary);text-decoration:none;font-weight:900}#pay-tip{padding:10px 12px;border-radius:16px;background:rgba(234,243,255,.76);border:1px solid rgba(79,140,255,.12)}#paypal-button-wrapper{opacity:.42;pointer-events:none;transition:.3s;min-height:150px;position:relative;margin-top:10px;filter:saturate(.72)}#paypal-button-wrapper.enabled{opacity:1;pointer-events:auto;filter:none}#paypal-loading{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--text-muted);font-size:14px;padding:40px 0}.spinner{width:18px;height:18px;border:2px solid var(--border-color);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
-        footer{width:100%;padding:44px 0;font-size:13px;color:var(--text-muted);text-align:center;border-top:1px solid rgba(148,163,184,.16);background:rgba(255,255,255,.78)}footer p{margin:6px 0}.floating-kook-btn{position:fixed;bottom:28px;right:28px;z-index:999;background:linear-gradient(135deg,var(--primary),var(--pink));color:#fff;border-radius:999px;display:flex;align-items:center;padding:13px 22px;text-decoration:none;font-weight:900;font-size:14px;box-shadow:0 18px 34px rgba(79,140,255,.28);transition:.2s}.floating-kook-btn:hover{transform:translateY(-3px)}.modal-overlay{display:none;position:fixed;inset:0;background:rgba(16,25,45,.46);z-index:2000;align-items:center;justify-content:center;padding:18px}.modal-overlay.show{display:flex;animation:fadeIn .2s ease}.modal-content{background:rgba(255,255,255,.94);width:90%;max-width:520px;max-height:80vh;padding:30px;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(16,25,45,.18);border-radius:26px;border:1px solid rgba(255,255,255,.88);backdrop-filter:blur(18px)}.modal-content h3{margin-top:0;margin-bottom:20px;color:#10192d;font-size:21px;font-weight:950;border-bottom:1px solid rgba(148,163,184,.2);padding-bottom:15px}.modal-body{flex:1;overflow-y:auto;color:#475569;font-size:14px;line-height:1.8;padding-right:10px}.modal-close{margin-top:25px;background:#eaf3ff;color:var(--primary);border:1px solid rgba(79,140,255,.16);padding:13px;cursor:pointer;font-weight:950;width:100%;font-size:14px;transition:.2s;border-radius:18px}.modal-close:hover{background:#ddecff}
-        @media(max-width:940px){.hero{grid-template-columns:1fr;padding-top:132px;gap:30px}.hero-copy{text-align:center}.hero p,.hero h1,.hero-stats{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.features{grid-template-columns:1fr}.payment-shell{grid-template-columns:1fr}.payment-side-card{min-height:auto}}
-        @media(max-width:768px){.navbar{padding:8px 0}.nav-content{width:94%;padding:8px 10px}.nav-logo{font-size:18px}.nav-logo:before{width:28px;height:28px;border-radius:10px}.nav-links{gap:4px}.nav-links a{padding:8px 9px;font-size:13px}.lang-switch{padding:8px 10px}.hero{width:92%;padding-bottom:52px}.hero h1{letter-spacing:-1.4px}.hero p{font-size:15px}.hero-actions{flex-direction:column;width:100%;gap:12px}.hero-actions a{width:100%}.hero-stats{grid-template-columns:1fr}.hero-visual{display:none}.about-section{padding:30px 0 54px}.feature-card{padding:28px 22px;border-radius:24px}.payment-section{padding:48px 0}.payment-shell{width:92%}.payment-side-card{padding:26px;border-radius:28px}.payment-side-card h2{font-size:28px}.container{padding:26px 18px;border-radius:28px}.quick-amounts{grid-template-columns:repeat(2,1fr)}.floating-kook-btn{bottom:18px;right:18px;padding:11px 16px;font-size:13px}}
-        @media(max-width:430px){.nav-links a[href="#about"]{display:none}.nav-logo{font-size:16px}.container h2{font-size:24px}}
+    a { color: inherit; }
+    .page { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
 
-    </style>
+    .navbar {
+      position: sticky;
+      top: 18px;
+      z-index: 1000;
+      width: min(1180px, calc(100% - 36px));
+      margin: 18px auto 0;
+      border: 1px solid rgba(255,255,255,.72);
+      border-radius: 999px;
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 16px 46px rgba(81,119,185,.12);
+    }
+    .nav-content { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 12px 10px 18px; }
+    .nav-logo {
+      display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font-weight: 900; letter-spacing: -.5px; color: #2457d6; font-size: 18px;
+    }
+    .logo-mark { width: 34px; height: 34px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(135deg, #6ea0ff, #9ee6ff 48%, #ffb2d9); color: #fff; box-shadow: 0 10px 24px rgba(91,140,255,.28); }
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-links a, .lang-switch {
+      border: 0; text-decoration: none; border-radius: 999px; padding: 10px 16px; font-size: 14px; font-weight: 800; color: #42506a; background: transparent; cursor: pointer; transition: .2s ease;
+    }
+    .nav-links a:hover, .lang-switch:hover { background: rgba(91,140,255,.1); color: #285ee8; }
+    .nav-kook { background: linear-gradient(135deg, #5b8cff, #77d4ff) !important; color: #fff !important; box-shadow: 0 10px 24px rgba(91,140,255,.22); }
+
+    .hero { padding: 72px 0 72px; display: grid; grid-template-columns: 1.04fr .96fr; gap: 34px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; background: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.78); color: #4063d8; font-size: 13px; font-weight: 900; box-shadow: var(--shadow-small); }
+    .dot { width: 9px; height: 9px; border-radius: 99px; background: #43d98c; box-shadow: 0 0 0 6px rgba(67,217,140,.13); }
+    .hero h1 {
+      margin: 20px 0 20px;
+      max-width: 700px;
+      font-size: clamp(36px, 5.2vw, 66px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      font-weight: 900;
+      color: #12213a;
+      text-wrap: balance;
+    }
+    .hero h1 .line-main, .hero h1 .line-sub { display: block; }
+    .hero h1 .line-main { margin-bottom: 6px; }
+    .hero h1 .line-sub {
+      color: transparent;
+      background: linear-gradient(90deg, #4c7cff 0%, #6bd4ff 48%, #c79ef0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .hero-desc { max-width: 590px; color: var(--muted); font-size: 17px; line-height: 1.9; margin: 0 0 30px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .btn-primary, .btn-secondary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 0 24px; border-radius: 999px; text-decoration: none; font-weight: 900; transition: .22s ease;
+    }
+    .btn-primary { color: #fff; background: linear-gradient(135deg, #5b8cff, #62ccff 55%, #ff9bce); box-shadow: 0 18px 34px rgba(91,140,255,.26); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 22px 42px rgba(91,140,255,.32); }
+    .btn-secondary { color: #3456c9; background: rgba(255,255,255,.72); border: 1px solid rgba(91,140,255,.16); }
+    .btn-secondary:hover { background: #fff; transform: translateY(-2px); }
+    .trust-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+    .trust-pill { padding: 10px 13px; border-radius: 999px; background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.8); color: #5e6d84; font-size: 13px; font-weight: 800; }
+
+    .mascot-card {
+      position: relative;
+      min-height: 520px;
+      border-radius: 42px;
+      border: 1px solid rgba(255,255,255,.78);
+      background:
+        radial-gradient(circle at 74% 18%, rgba(255,159,210,.34), transparent 26%),
+        radial-gradient(circle at 20% 20%, rgba(134,215,255,.32), transparent 26%),
+        linear-gradient(145deg, rgba(255,255,255,.86), rgba(246,251,255,.62));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(18px);
+    }
+    .mascot-card::before { content: ""; position: absolute; inset: 28px; border-radius: 34px; border: 1px dashed rgba(91,140,255,.16); }
+    .status-badge, .kook-badge { position: absolute; top: 26px; padding: 11px 15px; border-radius: 999px; background: rgba(255,255,255,.82); border: 1px solid rgba(255,255,255,.9); font-size: 14px; font-weight: 900; box-shadow: 0 12px 28px rgba(91,140,255,.12); z-index: 3; }
+    .status-badge { left: 26px; color: #3962dc; display: inline-flex; align-items: center; gap: 8px; }
+    .kook-badge { right: 26px; color: #2d66ee; text-decoration: none; }
+    .kook-badge:hover { transform: translateY(-1px); }
+
+    .cute-orbit { position: absolute; left: 50%; top: 48%; width: 320px; height: 320px; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle at 50% 42%, #fff 0 20%, #edf8ff 21% 37%, #ccecff 38% 58%, rgba(255,196,224,.65) 59% 66%, transparent 67%); filter: drop-shadow(0 24px 40px rgba(91,140,255,.16)); }
+    .cute-orbit::before, .cute-orbit::after { content:""; position:absolute; top: 60px; width: 86px; height: 102px; background: linear-gradient(180deg, #eaf8ff, #bfe5ff); border-radius: 55% 55% 45% 45%; box-shadow: inset 0 10px 22px rgba(255,255,255,.85); }
+    .cute-orbit::before { left: 58px; transform: rotate(-28deg); }
+    .cute-orbit::after { right: 58px; transform: rotate(28deg); }
+    .face { position: absolute; left: 50%; top: 48%; width: 130px; height: 110px; transform: translate(-50%, -50%); border-radius: 46% 46% 52% 52%; background: rgba(255,255,255,.78); z-index: 2; }
+    .eye { position: absolute; top: 46px; width: 13px; height: 17px; border-radius: 50%; background: #355472; }
+    .eye.left { left: 34px; } .eye.right { right: 34px; }
+    .smile { position: absolute; left: 50%; top: 66px; width: 48px; height: 22px; border-bottom: 3px solid rgba(53,84,114,.58); border-radius: 0 0 50px 50px; transform: translateX(-50%); }
+    .earphone { position: absolute; top: 140px; width: 28px; height: 48px; border-radius: 18px; background: linear-gradient(180deg, #79a9ff, #ffa4ca); z-index: 3; }
+    .earphone.left { left: 63px; } .earphone.right { right: 63px; }
+    .float-symbol { position: absolute; color: #69a3ff; font-weight: 900; z-index: 2; opacity: .9; animation: floaty 3.6s ease-in-out infinite; }
+    .s1 { left: 92px; top: 168px; color: #ff91ca; font-size: 30px; }
+    .s2 { right: 104px; top: 270px; font-size: 24px; animation-delay: .6s; }
+    .s3 { left: 120px; bottom: 122px; color: #7edff2; font-size: 18px; animation-delay: 1s; }
+    @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    .speech-wrap { position: absolute; left: 44px; right: 44px; bottom: 36px; display: grid; gap: 12px; z-index: 4; }
+    .speech { padding: 17px 20px; border-radius: 999px; background: rgba(255,255,255,.84); border: 1px solid rgba(255,255,255,.9); color: #3a4659; font-weight: 850; box-shadow: 0 12px 28px rgba(91,140,255,.1); }
+    .speech small { color: #697b98; font-weight: 800; }
+
+    .section { padding: 28px 0 72px; }
+    .section-title { text-align: center; margin: 0 auto 30px; max-width: 760px; }
+    .section-title h2 { font-size: clamp(30px, 4vw, 46px); letter-spacing: -1.6px; margin: 0 0 12px; }
+    .section-title p { margin: 0; color: var(--muted); line-height: 1.8; }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .feature-card { position: relative; padding: 28px; min-height: 230px; border-radius: 30px; border: 1px solid rgba(255,255,255,.78); background: rgba(255,255,255,.7); box-shadow: var(--shadow-small); overflow: hidden; }
+    .feature-card::after { content: ""; position: absolute; right: -30px; top: -30px; width: 110px; height: 110px; border-radius: 50%; background: radial-gradient(circle, rgba(134,215,255,.34), transparent 66%); }
+    .feature-icon { width: 54px; height: 54px; border-radius: 20px; display: grid; place-items: center; background: linear-gradient(135deg, rgba(91,140,255,.15), rgba(255,159,210,.18)); color: #4b78f3; margin-bottom: 20px; }
+    .feature-icon svg { width: 28px; height: 28px; stroke-width: 1.8; }
+    .feature-card h3 { margin: 0 0 12px; font-size: 20px; }
+    .feature-card p { margin: 0; color: var(--muted); line-height: 1.8; font-size: 14.5px; }
+
+    .payment-section { padding: 18px 0 88px; }
+    .payment-shell { display: grid; grid-template-columns: .86fr 1.14fr; gap: 22px; align-items: start; }
+    .payment-side, .checkout-card { border-radius: var(--radius-xl); border: 1px solid rgba(255,255,255,.76); background: rgba(255,255,255,.76); box-shadow: var(--shadow); backdrop-filter: blur(18px); }
+    .payment-side { padding: 34px; position: sticky; top: 100px; overflow: hidden; }
+    .payment-side::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 86% 14%, rgba(255,159,210,.24), transparent 30%), radial-gradient(circle at 18% 80%, rgba(134,215,255,.26), transparent 32%); z-index: -1; }
+    .payment-side h2 { font-size: 34px; line-height: 1.08; letter-spacing: -1px; margin: 0 0 14px; }
+    .payment-side p { margin: 0 0 26px; color: var(--muted); line-height: 1.8; }
+    .steps { display: grid; gap: 13px; }
+    .step { display: grid; grid-template-columns: 38px 1fr; gap: 14px; align-items: center; padding: 15px; border-radius: 20px; background: rgba(255,255,255,.68); border: 1px solid rgba(255,255,255,.78); }
+    .step-num { width: 38px; height: 38px; border-radius: 15px; display: grid; place-items: center; background: linear-gradient(135deg, #5b8cff, #8edcff); color: #fff; font-weight: 950; }
+    .step b { display: block; margin-bottom: 3px; } .step span { color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+    .checkout-card { padding: 34px; }
+    .checkout-head { text-align: center; margin-bottom: 26px; }
+    .checkout-head h2 { margin: 0 0 8px; font-size: 28px; letter-spacing: -.6px; }
+    .checkout-head p { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
+    .pay-tags { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+    .pay-tag { padding: 8px 12px; border-radius: 999px; background: #eef6ff; color: #52647c; font-size: 12px; font-weight: 900; }
+    label { display: block; font-weight: 900; color: #28344a; margin: 0 0 12px; font-size: 14px; }
+    .quick-amounts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+    .quick-amounts button { min-height: 54px; border: 1px solid rgba(91,140,255,.18); border-radius: 18px; background: rgba(255,255,255,.72); color: #53627a; font-size: 16px; font-weight: 950; cursor: pointer; transition: .2s ease; }
+    .quick-amounts button:hover { transform: translateY(-1px); border-color: rgba(91,140,255,.45); }
+    .quick-amounts button.active { background: linear-gradient(135deg, #5b8cff, #82d9ff); color: #fff; box-shadow: 0 16px 28px rgba(91,140,255,.24); }
+    select, input[type="number"] { width: 100%; min-height: 56px; padding: 0 16px; border-radius: 18px; border: 1px solid rgba(91,140,255,.18); background: rgba(255,255,255,.82); color: #172033; font-size: 16px; font-weight: 900; outline: none; transition: .2s ease; }
+    select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2368758c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em; }
+    select:focus, input[type="number"]:focus { border-color: rgba(91,140,255,.8); box-shadow: 0 0 0 4px rgba(91,140,255,.12); }
+    input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+    input[type="number"] { -moz-appearance: textfield; }
+    #custom-amount-container { display: none; margin-top: 12px; animation: fadeIn .24s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
+    .fee-summary { margin-top: 22px; padding: 20px; border-radius: 22px; background: linear-gradient(180deg, rgba(239,247,255,.9), rgba(255,255,255,.72)); border: 1px solid rgba(91,140,255,.14); }
+    .fee-row, .fee-total { display: flex; justify-content: space-between; gap: 16px; }
+    .fee-row { color: #647086; font-size: 14px; margin-bottom: 12px; }
+    .fee-total { border-top: 1px dashed rgba(91,140,255,.22); padding-top: 16px; margin-top: 4px; color: var(--ink); font-size: 20px; font-weight: 950; }
+    .fee-total strong { color: #5b8cff; }
+    .notice { margin: 22px 0; padding: 18px 18px 18px 20px; border-radius: 22px; background: rgba(255,255,255,.72); border: 1px solid rgba(91,140,255,.16); border-left: 5px solid #6aa4ff; color: #53627a; line-height: 1.75; font-size: 13.5px; }
+    .notice strong { color: #273246; }
+    .checkbox-container { display: flex; align-items: flex-start; gap: 10px; color: #65748c; font-size: 13.5px; line-height: 1.6; }
+    .checkbox-container input { margin-top: 4px; flex: 0 0 auto; accent-color: #5b8cff; }
+    .checkbox-container label { display: inline; margin: 0; color: inherit; font-weight: 760; }
+    .checkbox-container a { color: #4f7cff; font-weight: 900; text-decoration: none; }
+    #pay-tip { margin: 14px 0 0; padding: 11px 13px; border-radius: 999px; background: rgba(91,140,255,.08); color: #6a7890; text-align: center; font-size: 13px; font-weight: 850; }
+    #paypal-button-wrapper { opacity: .48; pointer-events: none; transition: .25s ease; min-height: 150px; margin-top: 14px; }
+    #paypal-button-wrapper.enabled { opacity: 1; pointer-events: auto; }
+    #paypal-loading { display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--muted); font-weight: 850; padding: 42px 0; }
+    .spinner { width: 18px; height: 18px; border: 2px solid rgba(91,140,255,.2); border-top-color: #5b8cff; border-radius: 50%; animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    footer { padding: 42px 0 54px; text-align: center; color: #758196; font-size: 13px; }
+    footer a { color: #4f7cff; text-decoration: none; font-weight: 850; }
+    .floating-kook-btn { position: fixed; right: 24px; bottom: 24px; z-index: 900; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 0 20px; border-radius: 999px; text-decoration: none; color: #fff; font-weight: 950; background: linear-gradient(135deg, #5b8cff, #77d4ff); box-shadow: 0 18px 38px rgba(91,140,255,.28); }
+
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(19,29,52,.36); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(10px); }
+    .modal-overlay.show { display: flex; animation: fadeIn .18s ease; }
+    .modal-content { width: min(540px, 100%); max-height: 82vh; display: flex; flex-direction: column; border-radius: 28px; background: rgba(255,255,255,.96); border: 1px solid rgba(255,255,255,.8); box-shadow: 0 30px 80px rgba(24,39,75,.18); padding: 28px; }
+    .modal-content h3 { margin: 0 0 16px; padding-bottom: 14px; border-bottom: 1px solid rgba(91,140,255,.14); font-size: 22px; }
+    .modal-body { overflow-y: auto; color: #53627a; line-height: 1.75; font-size: 14px; }
+    .modal-close { margin-top: 20px; min-height: 48px; border: 0; border-radius: 16px; background: linear-gradient(135deg, #eef6ff, #fff2fa); color: #3654c9; font-weight: 950; cursor: pointer; }
+
+    @media (max-width: 980px) {
+      .hero, .payment-shell { grid-template-columns: 1fr; }
+      .hero { padding-top: 44px; }
+      .mascot-card { min-height: 480px; }
+      .payment-side { position: relative; top: auto; }
+      .features { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .page, .navbar { width: min(100% - 24px, 1180px); }
+      .nav-content { padding-left: 14px; }
+      .nav-links a:not(.nav-kook) { display: none; }
+      .nav-logo { font-size: 16px; }
+      .hero h1 { font-size: clamp(32px, 9vw, 48px); line-height: 1.12; letter-spacing: -0.015em; }
+      .hero h1 .line-main { margin-bottom: 4px; }
+      .hero-desc { font-size: 15px; }
+      .mascot-card { min-height: 430px; border-radius: 30px; }
+      .cute-orbit { width: 260px; height: 260px; }
+      .cute-orbit::before, .cute-orbit::after { top: 48px; width: 70px; height: 84px; }
+      .cute-orbit::before { left: 48px; } .cute-orbit::after { right: 48px; }
+      .face { width: 108px; height: 92px; }
+      .eye { top: 40px; } .eye.left { left: 28px; } .eye.right { right: 28px; }
+      .earphone { top: 114px; }
+      .earphone.left { left: 50px; } .earphone.right { right: 50px; }
+      .speech-wrap { left: 18px; right: 18px; bottom: 20px; }
+      .speech { border-radius: 22px; font-size: 13px; }
+      .payment-side, .checkout-card { padding: 22px; border-radius: 28px; }
+      .quick-amounts { grid-template-columns: repeat(2, 1fr); }
+      .floating-kook-btn { left: 18px; right: 18px; bottom: 14px; }
+      footer { padding-bottom: 90px; }
+    }
+  </style>
 </head>
 <body>
+  <nav class="navbar">
+    <div class="nav-content">
+      <a href="#" class="nav-logo" aria-label="Nomi电竞社首页"><span class="logo-mark">N</span><span>Nomi电竞社</span></a>
+      <div class="nav-links">
+        <a href="#about" data-i18n="navAbout">服务特色</a>
+        <a href="#topup" data-i18n="navTopUp">立即充值</a>
+        <a href="https://kook.vip/u26m5f" class="nav-kook" data-i18n="navKook">加入 KOOK</a>
+        <button type="button" onclick="toggleLang()" class="lang-switch"><span id="lang-btn-text">EN / 中</span></button>
+      </div>
+    </div>
+  </nav>
 
-    <nav class="navbar">
-        <div class="nav-content">
-            <a href="#" class="nav-logo">Nomi电竞社</a>
-            <div class="nav-links">
-                <a href="#about" data-i18n="navAbout">关于我们</a>
-                <a href="#topup" data-i18n="navTopUp">立即充值</a>
-                <button onclick="toggleLang()" class="lang-switch"><span id="lang-btn-text">EN / 中</span></button>
-            </div>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="dot"></span><span data-i18n="eyebrow">在线接单 · 语音陪伴 · 上分开黑</span></div>
+        <h1 data-i18n="heroTitle"><span class="line-main">今晚一起开黑，</span><span class="line-sub">让游戏变甜一点</span></h1>
+        <p class="hero-desc" data-i18n="heroDesc">由上海糯咪科技有限公司官方运营，为您提供电竞上分、趣味陪伴及高端语音社区服务。新用户首单尊享 8 折福利，开启更轻松的游戏体验。</p>
+        <div class="hero-actions">
+          <a href="#topup" class="btn-primary" data-i18n="heroBtn">充值 VIP 余额</a>
+          <a href="https://kook.vip/u26m5f" class="btn-secondary" data-i18n="heroKookBtn">加入 KOOK 频道</a>
         </div>
-    </nav>
+        <div class="trust-row">
+          <span class="trust-pill" data-i18n="trust1">正规企业运营</span>
+          <span class="trust-pill" data-i18n="trust2">PayPal 加密支付</span>
+          <span class="trust-pill" data-i18n="trust3">客服人工核验入账</span>
+        </div>
+      </div>
 
-    <header class="hero">
-        <div class="hero-copy">
-            <div class="hero-badge" data-i18n="heroBadge">✦ Nomi 电竞社 · 温柔陪伴与实力上分</div>
-            <h1 data-i18n="heroTitle">上分娱乐两不误，专属陪玩暖心相伴</h1>
-            <p data-i18n="heroDesc">
-                由上海糯咪科技有限公司官方运营，为您提供顶尖电竞上分、趣味陪伴及高端专属语音社区服务。<br>
-                <span class="highlight-text">新用户首单尊享 8 折福利，开启您的极致游戏体验。</span>
-            </p>
-            <div class="hero-actions">
-                <a href="#topup" class="btn-primary" data-i18n="heroBtn">充值 VIP 余额</a>
-                <a href="https://kook.vip/u26m5f" target="_blank" rel="noopener noreferrer" class="btn-secondary" data-i18n="heroKookBtn">加入 KOOK 频道</a>
-            </div>
-            <div class="hero-stats">
-                <div class="hero-stat"><strong>19,000+</strong><span data-i18n="statKook">累计入驻社区成员</span></div>
-                <div class="hero-stat"><strong>24/7</strong><span data-i18n="statService">全天候客服支持</span></div>
-                <div class="hero-stat"><strong>PayPal</strong><span data-i18n="statPay">安全加密支付</span></div>
-            </div>
+      <div class="mascot-card" aria-label="Nomi电竞社视觉卡片">
+        <div class="status-badge"><span class="dot"></span><span data-i18n="onlineText">陪玩在线</span></div>
+        <a class="kook-badge" href="https://kook.vip/u26m5f">🎧 KOOK</a>
+        <div class="cute-orbit">
+          <div class="face"><span class="eye left"></span><span class="eye right"></span><span class="smile"></span></div>
+          <span class="earphone left"></span><span class="earphone right"></span>
         </div>
-        <div class="hero-visual" aria-hidden="true">
-            <div class="mascot-card">
-                <div class="mascot-top"><div class="status-pill"><span class="status-dot"></span><span data-i18n="visualOnline">陪玩在线</span></div><div class="voice-pill">🎧 KOOK</div></div>
-                <div class="mascot-main"><div class="mascot-circle"></div><div class="headset"></div><div class="fox-face"><span class="fox-eye left"></span><span class="fox-eye right"></span><span class="fox-smile"></span></div><div class="floating-heart one">♡</div><div class="floating-heart two">✦</div></div>
-                <div class="mascot-bottom"><div class="chat-line" data-i18n="visualChat1">今晚一起开黑，上分不孤单。</div><div class="chat-line muted" data-i18n="visualChat2">新人首单 8 折 · 充值后联系 KOOK 客服核销</div></div>
-            </div>
+        <span class="float-symbol s1">♡</span><span class="float-symbol s2">✦</span><span class="float-symbol s3">●</span>
+        <div class="speech-wrap">
+          <div class="speech" data-i18n="speech1">正在匹配适合你的陪玩搭子…</div>
+          <div class="speech"><small data-i18n="speech2">新用户首单 8 折 · 充值后联系 KOOK 客服核销</small></div>
         </div>
-    </header>
+      </div>
+    </section>
 
-    <section id="about" class="about-section">
-        <h2 data-i18n="aboutTitle">为您量身定制的服务</h2>
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                </div>
-                <h3 data-i18n="card1Title">职业级顶尖陪玩</h3>
-                <p data-i18n="card1Desc">全员经过严格实名认证与实力考核，风格多元化。既有退役青训选手、万场大神帮你快速提升段位；更有海量治愈甜妹、高冷御姐、暖心学长。无论是硬核冲分摘星，还是休闲唠嗑开黑，彻底告别枯燥路人局！</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                </div>
-                <h3 data-i18n="card2Title">万人高端 KOOK 社区</h3>
-                <p data-i18n="card2Desc">拥有万人常驻的专属 KOOK 服务器（累计入驻超19000人，实时在线2000+）。全天候开放私密房间、零延迟高清沟通。找大神、找陪伴、组团建，一键匹配快速上车，更享超多专属社群福利。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                </div>
-                <h3 data-i18n="card3Title">正规靠谱 安全透明</h3>
-                <p data-i18n="card3Desc">由正规注册企业全权运营，全程杜绝虚假服务与套路消费。所有服务明码标价，无隐形捆绑消费。交易全程加密防护，资金安全有保障，VIP余额实时到账，全天候专属客服守护您的权益。</p>
-            </div>
+    <section id="about" class="section">
+      <div class="section-title">
+        <h2 data-i18n="aboutTitle">为您量身定制的陪伴服务</h2>
+        <p data-i18n="aboutSub">不只是上分，也可以是放松、聊天、开黑和社区陪伴。</p>
+      </div>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+          <h3 data-i18n="card1Title">职业级顶尖陪玩</h3>
+          <p data-i18n="card1Desc">全员经过严格实名认证与实力考核，既有实力大神帮你快速提升段位，也有治愈甜妹、暖心学长陪你轻松开黑。</p>
         </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
+          <h3 data-i18n="card2Title">专属高端 KOOK 社区</h3>
+          <p data-i18n="card2Desc">拥有万人常驻的专属 KOOK 服务器，全天候开放语音房间，找大神、找陪伴、组队开黑都更方便。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+          <h3 data-i18n="card3Title">正规靠谱 安全透明</h3>
+          <p data-i18n="card3Desc">正规注册企业运营，服务明码标价，无隐形捆绑消费。充值后由客服核验 PayPal 订单并为您更新余额。</p>
+        </div>
+      </div>
     </section>
 
     <section id="topup" class="payment-section">
-        <div class="payment-shell">
-            <div class="payment-side-card">
-                <h2 data-i18n="paySideTitle">安全充值，轻松开启陪伴体验</h2>
-                <p data-i18n="paySideDesc">选择金额并完成 PayPal 支付后，请保存订单号，联系 KOOK 客服核验入账。</p>
-                <div class="pay-steps">
-                    <div class="pay-step"><span>1</span><div><strong data-i18n="payStep1Title">选择金额</strong><em data-i18n="payStep1Desc">支持固定档位和自定义金额</em></div></div>
-                    <div class="pay-step"><span>2</span><div><strong data-i18n="payStep2Title">PayPal 支付</strong><em data-i18n="payStep2Desc">订单金额、币种、状态清晰可核验</em></div></div>
-                    <div class="pay-step"><span>3</span><div><strong data-i18n="payStep3Title">客服入账</strong><em data-i18n="payStep3Desc">发送订单号至 KOOK 客服完成余额更新</em></div></div>
-                </div>
-            </div>
-            <div class="container">
+      <div class="payment-shell">
+        <aside class="payment-side">
+          <h2 data-i18n="paySideTitle">充值流程更简单</h2>
+          <p data-i18n="paySideDesc">选择金额并完成 PayPal 支付后，复制订单号发送给 KOOK 客服。客服会核对订单状态、金额、币种后为您入账。</p>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div><b data-i18n="step1Title">选择金额</b><span data-i18n="step1Desc">支持固定金额和自定义充值。</span></div></div>
+            <div class="step"><div class="step-num">2</div><div><b data-i18n="step2Title">PayPal 付款</b><span data-i18n="step2Desc">支付过程由 PayPal 安全处理。</span></div></div>
+            <div class="step"><div class="step-num">3</div><div><b data-i18n="step3Title">联系客服入账</b><span data-i18n="step3Desc">发送订单号，客服核验后更新余额。</span></div></div>
+          </div>
+        </aside>
+
+        <div class="checkout-card">
+          <div class="checkout-head">
             <h2 data-i18n="topupTitle">VIP 账户余额充值</h2>
-            <div class="subtitle" data-i18n="topupSub">充值余额可用于购买平台各项陪玩与技术服务</div>
+            <p data-i18n="topupSub">充值余额可用于购买平台各项陪玩与技术服务</p>
+            <div class="pay-tags"><span class="pay-tag">PayPal</span><span class="pay-tag">USD</span><span class="pay-tag" data-i18n="manualCheck">人工核验</span></div>
+          </div>
 
-            <label data-i18n="labelAmount">选择充值金额 (美元)</label>
-            
-            <div class="quick-amounts" id="quick-amounts">
-                <button type="button" data-amount="50" class="active">$50</button>
-                <button type="button" data-amount="100">$100</button>
-                <button type="button" data-amount="500">$500</button>
-                <button type="button" data-amount="1000">$1,000</button>
-            </div>
+          <label data-i18n="labelAmount">选择充值金额（美元）</label>
+          <div class="quick-amounts" id="quick-amounts">
+            <button type="button" data-amount="50" class="active">$50</button>
+            <button type="button" data-amount="100">$100</button>
+            <button type="button" data-amount="500">$500</button>
+            <button type="button" data-amount="1000">$1,000</button>
+          </div>
+          <select id="topup-amount" aria-label="选择充值金额">
+            <option value="50">$50.00</option>
+            <option value="100">$100.00</option>
+            <option value="300">$300.00</option>
+            <option value="500">$500.00</option>
+            <option value="1000">$1,000.00</option>
+            <option value="3000">$3,000.00</option>
+            <option value="5000">$5,000.00</option>
+            <option value="10000">$10,000.00</option>
+            <option value="custom" data-i18n="customAmountOption">自定义金额</option>
+          </select>
+          <div id="custom-amount-container"><input type="number" id="custom-amount-input" min="1" max="100000" step="1" inputmode="decimal" placeholder="请输入金额（例如：150）" aria-label="自定义充值金额" /></div>
 
-            <select id="topup-amount">
-                <option value="50">$50.00</option>
-                <option value="100">$100.00</option>
-                <option value="300">$300.00</option>
-                <option value="500">$500.00</option>
-                <option value="1000">$1,000.00</option>
-                <option value="3000">$3,000.00</option>
-                <option value="5000">$5,000.00</option>
-                <option value="10000">$10,000.00</option>
-                <option value="custom" data-i18n="customAmountOption">自定义金额</option>
-            </select>
+          <div class="fee-summary">
+            <div class="fee-row"><span data-i18n="feeAmount">充值本金：</span><span id="display-subtotal">$50.00</span></div>
+            <div class="fee-row"><span data-i18n="feeProcessing">平台支付处理及服务成本：</span><span id="display-fee">$3.50</span></div>
+            <div class="fee-total"><span data-i18n="feeTotal">总付金额：</span><strong id="display-total">$53.50</strong></div>
+          </div>
 
-            <div id="custom-amount-container">
-                <input type="number" id="custom-amount-input" min="1" max="100000" step="1" inputmode="numeric" placeholder="请输入金额 (例如: 150)" aria-label="自定义充值金额">
-            </div>
-            
-            <div class="fee-summary">
-                <div class="fee-row"><span data-i18n="feeAmount">充值本金：</span><span id="display-subtotal" style="color: #0f172a;">$50.00</span></div>
-                <div class="fee-row"><span data-i18n="feeProcessing">平台支付处理及服务成本：</span><span id="display-fee" style="color: #0f172a;">$3.50</span></div>
-                <div class="fee-total"><span data-i18n="feeTotal">总付金额：</span><span id="display-total" style="color: var(--primary);">$53.50</span></div>
-            </div>
+          <div class="notice">
+            <strong data-i18n="noticeTitle">重要说明：</strong><br />
+            <span data-i18n="notice1">1. <strong>数字资产：</strong>您正在购买虚拟数字账户余额。本服务不涉及任何实体商品的发货。</span><br />
+            <span data-i18n="notice2">2. <strong>退款政策：</strong>充值余额一旦支付成功并记录到您的账户中，概不退款。</span><br />
+            <span data-i18n="notice3">3. <strong>账号激活：</strong>请妥善保存交易订单号，并联系我们的 KOOK 客服为您更新余额。</span><br />
+            <span data-i18n="notice4">4. <strong>人工核验：</strong>客服会在 PayPal 后台核对订单号、金额、币种和付款状态后再为您入账。</span>
+          </div>
 
-            <div class="notice">
-                <strong data-i18n="noticeTitle" style="color: #1e293b;">重要说明：</strong><br>
-                <span data-i18n="notice1" style="display:inline-block; margin-top:4px;">1. <strong>数字资产：</strong>您正在购买虚拟数字账户余额。本服务不涉及任何实体商品的发货。</span><br>
-                <span data-i18n="notice2" style="display:inline-block; margin-top:4px;">2. <strong>退款政策：</strong>充值余额一旦支付成功并记录到您的账户中，概不退款。</span><br>
-                <span data-i18n="notice3" style="display:inline-block; margin-top:4px;">3. <strong>账号激活：</strong>请妥善保存您的交易订单号，并联系我们的 KOOK 客服为您更新余额。</span><br>
-                <span data-i18n="notice4" style="display:inline-block; margin-top:4px;">4. <strong>人工核验：</strong>客服会在 PayPal 后台核对订单号、金额、币种和付款状态后再为您入账。</span>
-            </div>
+          <div class="checkbox-container">
+            <input type="checkbox" id="agree" name="agree" />
+            <label for="agree" id="agree-label" data-i18n="agreeText">我已阅读并同意 <a href="#" onclick="showModal('terms', event)">《服务条款》</a> 和 <a href="#" onclick="showModal('refund', event)">《退款政策》</a></label>
+          </div>
+          <p id="pay-tip" data-i18n="payTip">请先勾选服务条款与退款政策后继续支付</p>
 
-            <div class="checkbox-container">
-                <input type="checkbox" id="agree" name="agree">
-                <label for="agree" id="agree-label" data-i18n="agreeText">
-                    我已阅读并同意 <a href="#" onclick="showModal('terms', event)">《服务条款》</a> 和 <a href="#" onclick="showModal('refund', event)">《退款政策》</a>
-                </label>
-            </div>
-
-            <p id="pay-tip" data-i18n="payTip" style="font-size:13px;color:#64748b;margin:0 0 10px 0;">请先勾选服务条款与退款政策后继续支付</p>
-
-            <div id="paypal-button-wrapper">
-                <div id="paypal-loading">
-                    <div class="spinner"></div>
-                    <span id="paypal-loading-text" data-i18n="loadingPay">正在加载安全支付环境…</span>
-                </div>
-                <div id="paypal-button-container"></div>
-            </div>
+          <div id="paypal-button-wrapper">
+            <div id="paypal-loading"><div class="spinner"></div><span id="paypal-loading-text" data-i18n="loadingPay">正在加载安全支付环境…</span></div>
+            <div id="paypal-button-container"></div>
+          </div>
         </div>
-        </div>
+      </div>
     </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2026 上海糯咪科技有限公司 (Shanghai Nuomi Technology Co., Ltd.)</p>
-        <p style="margin-top: 10px;">
-            <a href="https://kook.vip/u26m5f" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none;" data-i18n="footerLink">客户支持 / 加入 KOOK 频道</a>
-        </p>
-    </footer>
+  <footer>
+    <p>&copy; 2026 上海糯咪科技有限公司 (Shanghai Nuomi Technology Co., Ltd.)</p>
+    <p style="margin-top:10px;"><a href="https://kook.vip/u26m5f" data-i18n="footerLink">客户支持 / 加入 KOOK 频道</a></p>
+  </footer>
+  <a href="https://kook.vip/u26m5f" class="floating-kook-btn"><span data-i18n="floatKook">加入 KOOK 社区</span></a>
 
-    <a href="https://kook.vip/u26m5f" target="_blank" rel="noopener noreferrer" class="floating-kook-btn">
-        <span data-i18n="floatKook">加入 KOOK 社区</span>
-    </a>
-
-    <div class="modal-overlay" id="doc-modal" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <h3 id="modal-title"></h3>
-            <div class="modal-body" id="modal-body"></div>
-            <button class="modal-close" onclick="closeModal(event)" data-i18n="modalCloseBtn">关闭确认</button>
-        </div>
+  <div class="modal-overlay" id="doc-modal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <h3 id="modal-title"></h3>
+      <div class="modal-body" id="modal-body"></div>
+      <button class="modal-close" onclick="closeModal(event)" data-i18n="modalCloseBtn">关闭确认</button>
     </div>
+  </div>
 
-    <script>
-        const translations = {
-            en: {
-                navAbout: "Features", navTopUp: "Top Up", heroBadge: "✦ Nomi Gaming · Companionship & Rank Boosting",
-                heroTitle: "Premium Gaming Companions & Pro Coaching",
-                heroDesc: "Operated by Shanghai Nuomi Technology Co., Ltd. Elevate your gameplay or just chill with our elite gaming companions.<br><span class='highlight-text'>New users get 20% OFF their first order!</span>",
-                heroBtn: "Top Up Balance", heroKookBtn: "Join KOOK Server", statKook: "Community members", statService: "Customer support", statPay: "Secure encrypted payment", visualOnline: "Companions Online", visualChat1: "Queue together tonight. Ranking up is better with company.", visualChat2: "20% off first order · Contact KOOK support after payment",
-                aboutTitle: "Tailored Services for You", paySideTitle: "Secure top-up for your companion experience", paySideDesc: "Choose an amount, complete PayPal payment, save the order ID, and contact KOOK support for verification and balance update.", payStep1Title: "Choose Amount", payStep1Desc: "Preset packages and custom amounts supported", payStep2Title: "Pay with PayPal", payStep2Desc: "Amount, currency, and payment status are verifiable", payStep3Title: "Support Credits Balance", payStep3Desc: "Send your order ID to KOOK support",
-                card1Title: "Diverse Personalities & Pro Gamers", card1Desc: "Strictly vetted and highly skilled. Choose from ex-pro players to boost your rank, or match with charming voice companions for a relaxing gaming session. Say goodbye to boring solo queues!",
-                card2Title: "Premium KOOK Community", card2Desc: "Join our massive KOOK server with over 19,000 members and 2,000+ active daily users. Enjoy zero-latency voice channels, private matchmaking, and exclusive community events.",
-                card3Title: "Secure, Transparent & Reliable", card3Desc: "Officially operated by a registered corporate entity. All pricing is transparent with no hidden fees. Transactions are fully encrypted, supported by 24/7 customer service.",
-                topupTitle: "VIP Account Balance Top-Up", topupSub: "Balance can be used for all platform services.",
-                labelAmount: "Select Recharge Amount (USD)",
-                customAmountOption: "Custom Amount",
-                feeAmount: "Top-up Amount:", feeProcessing: "Platform processing & service fee:", feeTotal: "Total to Pay:",
-                noticeTitle: "Important Notice:",
-                notice1: "1. <strong>Digital Assets:</strong> You are purchasing digital account balance. No physical items will be shipped.",
-                notice2: "2. <strong>Refund Policy:</strong> Top-up balances are non-refundable once credited to your account.",
-                notice3: "3. <strong>Activation:</strong> Please save your Order ID and contact our KOOK server admins to update your balance.",
-                notice4: "4. <strong>Manual Verification:</strong> Our support team will verify the Order ID, amount, currency and payment status in PayPal before crediting your balance.",
-                agreeText: 'I agree to the <a href="#" onclick="showModal(\'terms\', event)">Terms of Service</a> & <a href="#" onclick="showModal(\'refund\', event)">Refund Policy</a>',
-                loadingPay: "Loading secure payment environment…",
-                payTip: "Please agree to the Terms & Refund Policy before continuing.",
-                sdkFail: "⚠ Payment gateway failed to load. Please refresh.",
-                footerLink: "Customer Support / Join KOOK",
-                floatKook: "Join KOOK",
-                alertAgree: "Please agree to the Terms & Refund Policy first.", alertInvalidAmount: "Please enter a valid amount (Minimum $1.00).",
-                alertCancel: "Payment cancelled.", alertError: "An error occurred. Please try again.",
-                modalCloseBtn: "Close",
-                termsTitle: "Terms of Service",
-                termsBody: "1. <strong>Service Description:</strong> Shanghai Nuomi Technology Co., Ltd. provides virtual game companionship and account balance top-up services.<br><br>2. <strong>Account Balance:</strong> The balance topped up on this page can only be used for services within the Nomi Gaming ecosystem and cannot be withdrawn as cash.<br><br>3. <strong>User Conduct:</strong> Users must not use our services for any illegal activities.",
-                refundTitle: "Refund Policy",
-                refundBody: "1. <strong>Digital Goods:</strong> VIP Account Balances are digital goods. Once the payment is captured and credited to your account, <strong>it is final and non-refundable</strong>.<br><br>2. <strong>Chargebacks:</strong> Fraudulent chargebacks will result in a permanent ban.<br><br>3. <strong>Exceptions:</strong> If an error occurs, please contact our KOOK server admins with your Order ID.",
-                orderIdLabel: "Order ID", copyBtn: "Copy",
-                alertSuccess: "Top-Up Successful! Thank you, ", alertCredited: "\n\nAccount Credited: $", alertOrderId: " USD\nYour Order ID is: ", alertContact: "\n\nPlease click the KOOK link below to contact admin.",
-                successBaseText: "Account Credited:", successContactText: "Please save this Order ID and contact admin in KOOK to update your balance."
-            },
-            zh: {
-                navAbout: "服务特色", navTopUp: "立即充值", heroBadge: "✦ Nomi 电竞社 · 温柔陪伴与实力上分",
-                heroTitle: "上分娱乐两不误，专属陪玩暖心相伴",
-                heroDesc: "由上海糯咪科技有限公司官方运营，为您提供顶尖电竞上分、趣味陪伴及高端专属语音社区服务。<br><span class='highlight-text'>新用户首单尊享 8 折福利，开启您的极致游戏体验。</span>",
-                heroBtn: "充值 VIP 余额", heroKookBtn: "加入 KOOK 频道", statKook: "累计入驻社区成员", statService: "全天候客服支持", statPay: "安全加密支付", visualOnline: "陪玩在线", visualChat1: "今晚一起开黑，上分不孤单。", visualChat2: "新人首单 8 折 · 充值后联系 KOOK 客服核销",
-                aboutTitle: "为您量身定制的服务", paySideTitle: "安全充值，轻松开启陪伴体验", paySideDesc: "选择金额并完成 PayPal 支付后，请保存订单号，联系 KOOK 客服核验入账。", payStep1Title: "选择金额", payStep1Desc: "支持固定档位和自定义金额", payStep2Title: "PayPal 支付", payStep2Desc: "订单金额、币种、状态清晰可核验", payStep3Title: "客服入账", payStep3Desc: "发送订单号至 KOOK 客服完成余额更新",
-                card1Title: "职业级顶尖陪玩", card1Desc: "全员经过严格实名认证与实力考核，风格多元化。既有退役青训选手、万场大神帮你快速提升段位；更有海量治愈甜妹、高冷御姐、暖心学长。无论是硬核冲分摘星，还是休闲唠嗑开黑，彻底告别枯燥路人局！",
-                card2Title: "专属高端 KOOK 社区", card2Desc: "拥有万人常驻的专属 KOOK 服务器（累计入驻超19000人，实时在线2000+）。全天候开放私密房间、零延迟高清沟通。找大神、找陪伴、组团建，一键匹配快速上车，更享超多专属社群福利。",
-                card3Title: "正规靠谱 安全透明", card3Desc: "由正规注册企业全权运营，全程杜绝虚假服务与套路消费。所有服务明码标价，无隐形捆绑消费。交易全程加密防护，资金安全有保障，VIP余额实时到账，全天候专属客服守护您的权益。",
-                topupTitle: "VIP 账户余额充值", topupSub: "充值余额可用于购买平台各项陪玩与技术服务",
-                labelAmount: "选择充值金额 (美元)",
-                customAmountOption: "自定义金额",
-                feeAmount: "充值本金：", feeProcessing: "平台支付处理及服务成本：", feeTotal: "总付金额：",
-                noticeTitle: "重要说明：",
-                notice1: "1. <strong>数字资产：</strong>您正在购买虚拟数字账户余额。本服务不涉及任何实体商品的发货。",
-                notice2: "2. <strong>退款政策：</strong>充值余额一旦支付成功并记录到您的账户中，概不退款。",
-                notice3: "3. <strong>账号激活：</strong>请妥善保存您的交易订单号，并联系我们的 KOOK 客服为您更新余额。",
-                notice4: "4. <strong>人工核验：</strong>客服会在 PayPal 后台核对订单号、金额、币种和付款状态后再为您入账。",
-                agreeText: '我已阅读并同意 <a href="#" onclick="showModal(\'terms\', event)">《服务条款》</a> 和 <a href="#" onclick="showModal(\'refund\', event)">《退款政策》</a>',
-                loadingPay: "正在加载安全支付环境…",
-                payTip: "请先勾选服务条款与退款政策后继续支付",
-                sdkFail: "⚠ 支付通道加载失败，请检查网络后刷新重试。",
-                footerLink: "客户支持 / 加入 KOOK 频道",
-                floatKook: "加入 KOOK 社区",
-                alertAgree: "请先勾选同意服务条款及退款政策。", alertInvalidAmount: "请输入有效的充值金额（最低 $1.00）。",
-                alertCancel: "支付已取消。", alertError: "支付出现错误。请重试或联系客服。",
-                modalCloseBtn: "关闭确认",
-                termsTitle: "服务条款",
-                termsBody: "1. <strong>服务说明：</strong> 上海糯咪科技有限公司（本平台）为用户提供电竞游戏陪玩、组队开黑及账户余额充值服务。<br><br>2. <strong>虚拟资产：</strong> 您在本页面充值的余额仅限在 Nomi电竞社 体系内用于消费，不支持提现。<br><br>3. <strong>违规处理：</strong> 严禁利用本平台进行任何违法、擦边或恶意引流活动，一经发现将冻结账户。",
-                refundTitle: "退款政策",
-                refundBody: "1. <strong>数字商品属性：</strong> 账户充值余额属于数字化虚拟商品。一旦支付成功且余额记录到您的账户中，<strong>一律不支持任何理由的退款</strong>。<br><br>2. <strong>拒付惩罚：</strong> 如无合理理由发起恶意拒付 (Chargeback)，平台将永久封禁您的账号。<br><br>3. <strong>例外情况：</strong> 如果因系统故障导致未到账，请保存您的 Order ID 截图并联系 KOOK 管理员人工核实。",
-                orderIdLabel: "订单号", copyBtn: "复制",
-                alertSuccess: "充值成功！感谢您，", alertCredited: "\n\n实际到账：$", alertOrderId: " USD\n您的订单号为：", alertContact: "\n\n请联系 KOOK 管理员更新余额。",
-                successBaseText: "实际入账本金：", successContactText: "请复制上方订单号发送给 KOOK 客服核销入账。"
-            }
-        };
+  <script>
+    const translations = {
+      en: {
+        navAbout: "Features", navTopUp: "Top Up", navKook: "Join KOOK", eyebrow: "Online · Voice Companion · Team Up", onlineText: "Companions Online",
+        heroTitle: "<span class='line-main'>Queue together tonight,</span><span class='line-sub'>make gaming sweeter</span>", heroDesc: "Operated by Shanghai Nuomi Technology Co., Ltd. We provide gaming companionship, rank-up coaching and premium voice community services. New users get 20% OFF their first order.", heroBtn: "Top Up Balance", heroKookBtn: "Join KOOK Server",
+        trust1: "Registered Company", trust2: "PayPal Secure Payment", trust3: "Manual Verification", speech1: "Matching you with a companion that fits your vibe…", speech2: "20% off for new users · Contact KOOK support after top-up",
+        aboutTitle: "Tailored companionship services", aboutSub: "Not only rank-up, but also chill voice chat, team-up sessions and community support.",
+        card1Title: "Pro-level companions", card1Desc: "Strictly vetted companions with diverse styles: strong players for rank-up, sweet voices for relaxing games, and warm partners for casual queues.",
+        card2Title: "Premium KOOK community", card2Desc: "Join our exclusive KOOK server for voice rooms, team matching, companions, community events and faster customer support.",
+        card3Title: "Secure and transparent", card3Desc: "Operated by a registered corporate entity with transparent pricing. After payment, support will verify the PayPal order and update your balance.",
+        paySideTitle: "A simpler top-up flow", paySideDesc: "Choose an amount, finish PayPal payment, then send the Order ID to KOOK support. Support will verify status, amount and currency before crediting your balance.",
+        step1Title: "Choose Amount", step1Desc: "Preset and custom amounts are supported.", step2Title: "Pay with PayPal", step2Desc: "The payment is securely processed by PayPal.", step3Title: "Contact Support", step3Desc: "Send the Order ID for manual balance update.",
+        topupTitle: "VIP Account Balance Top-Up", topupSub: "Balance can be used for all platform services.", manualCheck: "Manual Check", labelAmount: "Select Recharge Amount (USD)", customAmountOption: "Custom Amount",
+        feeAmount: "Top-up Amount:", feeProcessing: "Platform processing & service cost:", feeTotal: "Total to Pay:",
+        noticeTitle: "Important Notice:", notice1: "1. <strong>Digital Assets:</strong> You are purchasing digital account balance. No physical items will be shipped.", notice2: "2. <strong>Refund Policy:</strong> Top-up balances are non-refundable once credited to your account.", notice3: "3. <strong>Activation:</strong> Please save your Order ID and contact KOOK support to update your balance.", notice4: "4. <strong>Manual Verification:</strong> Support will verify Order ID, amount, currency and payment status in PayPal before crediting your balance.",
+        agreeText: "I agree to the <a href='#' onclick=\"showModal('terms', event)\">Terms of Service</a> & <a href='#' onclick=\"showModal('refund', event)\">Refund Policy</a>", payTip: "Please agree to the Terms & Refund Policy before payment.", loadingPay: "Loading secure payment environment…", sdkFail: "⚠ Payment gateway failed to load. Please refresh.", footerLink: "Customer Support / Join KOOK", floatKook: "Join KOOK", modalCloseBtn: "Close",
+        alertAgree: "Please agree to the Terms & Refund Policy first.", alertInvalidAmount: "Please enter a valid amount (Minimum $1.00).", alertCancel: "Payment cancelled.", alertError: "An error occurred. Please try again.",
+        termsTitle: "Terms of Service", termsBody: "1. <strong>Service Description:</strong> Shanghai Nuomi Technology Co., Ltd. provides virtual game companionship and account balance top-up services.<br><br>2. <strong>Account Balance:</strong> The balance topped up on this page can only be used for services within the Nomi Gaming ecosystem and cannot be withdrawn as cash.<br><br>3. <strong>User Conduct:</strong> Users must not use our services for any illegal activities.",
+        refundTitle: "Refund Policy", refundBody: "1. <strong>Digital Goods:</strong> VIP Account Balances are digital goods. Once the payment is captured and credited to your account, <strong>it is final and non-refundable</strong>.<br><br>2. <strong>Chargebacks:</strong> Fraudulent chargebacks will result in a permanent ban.<br><br>3. <strong>Exceptions:</strong> If an error occurs, please contact KOOK support with your Order ID.",
+        orderIdLabel: "Order ID", copyBtn: "Copy", alertSuccess: "Top-Up Successful! Thank you, ", successBaseText: "Account Credited:", successContactText: "Please save this Order ID and contact KOOK support to update your balance."
+      },
+      zh: {
+        navAbout: "服务特色", navTopUp: "立即充值", navKook: "加入 KOOK", eyebrow: "在线接单 · 语音陪伴 · 上分开黑", onlineText: "陪玩在线",
+        heroTitle: "<span class='line-main'>今晚一起开黑，</span><span class='line-sub'>让游戏变甜一点</span>", heroDesc: "由上海糯咪科技有限公司官方运营，为您提供电竞上分、趣味陪伴及高端语音社区服务。新用户首单尊享 8 折福利，开启更轻松的游戏体验。", heroBtn: "充值 VIP 余额", heroKookBtn: "加入 KOOK 频道",
+        trust1: "正规企业运营", trust2: "PayPal 加密支付", trust3: "客服人工核验入账", speech1: "正在匹配适合你的陪玩搭子…", speech2: "新用户首单 8 折 · 充值后联系 KOOK 客服核销",
+        aboutTitle: "为您量身定制的陪伴服务", aboutSub: "不只是上分，也可以是放松、聊天、开黑和社区陪伴。",
+        card1Title: "职业级顶尖陪玩", card1Desc: "全员经过严格实名认证与实力考核，既有实力大神帮你快速提升段位，也有治愈甜妹、暖心学长陪你轻松开黑。",
+        card2Title: "专属高端 KOOK 社区", card2Desc: "拥有万人常驻的专属 KOOK 服务器，全天候开放语音房间，找大神、找陪伴、组队开黑都更方便。",
+        card3Title: "正规靠谱 安全透明", card3Desc: "正规注册企业运营，服务明码标价，无隐形捆绑消费。充值后由客服核验 PayPal 订单并为您更新余额。",
+        paySideTitle: "充值流程更简单", paySideDesc: "选择金额并完成 PayPal 支付后，复制订单号发送给 KOOK 客服。客服会核对订单状态、金额、币种后为您入账。",
+        step1Title: "选择金额", step1Desc: "支持固定金额和自定义充值。", step2Title: "PayPal 付款", step2Desc: "支付过程由 PayPal 安全处理。", step3Title: "联系客服入账", step3Desc: "发送订单号，客服核验后更新余额。",
+        topupTitle: "VIP 账户余额充值", topupSub: "充值余额可用于购买平台各项陪玩与技术服务", manualCheck: "人工核验", labelAmount: "选择充值金额（美元）", customAmountOption: "自定义金额",
+        feeAmount: "充值本金：", feeProcessing: "平台支付处理及服务成本：", feeTotal: "总付金额：",
+        noticeTitle: "重要说明：", notice1: "1. <strong>数字资产：</strong>您正在购买虚拟数字账户余额。本服务不涉及任何实体商品的发货。", notice2: "2. <strong>退款政策：</strong>充值余额一旦支付成功并记录到您的账户中，概不退款。", notice3: "3. <strong>账号激活：</strong>请妥善保存交易订单号，并联系我们的 KOOK 客服为您更新余额。", notice4: "4. <strong>人工核验：</strong>客服会在 PayPal 后台核对订单号、金额、币种和付款状态后再为您入账。",
+        agreeText: "我已阅读并同意 <a href='#' onclick=\"showModal('terms', event)\">《服务条款》</a> 和 <a href='#' onclick=\"showModal('refund', event)\">《退款政策》</a>", payTip: "请先勾选服务条款与退款政策后继续支付", loadingPay: "正在加载安全支付环境…", sdkFail: "⚠ 支付通道加载失败，请检查网络后刷新重试。", footerLink: "客户支持 / 加入 KOOK 频道", floatKook: "加入 KOOK 社区", modalCloseBtn: "关闭确认",
+        alertAgree: "请先勾选同意服务条款及退款政策。", alertInvalidAmount: "请输入有效的充值金额（最低 $1.00）。", alertCancel: "支付已取消。", alertError: "支付出现错误。请重试或联系客服。",
+        termsTitle: "服务条款", termsBody: "1. <strong>服务说明：</strong>上海糯咪科技有限公司（本平台）为用户提供电竞游戏陪玩、组队开黑及账户余额充值服务。<br><br>2. <strong>虚拟资产：</strong>您在本页面充值的余额仅限在 Nomi电竞社 体系内用于消费，不支持提现。<br><br>3. <strong>违规处理：</strong>严禁利用本平台进行任何违法、擦边或恶意引流活动，一经发现将冻结账户。",
+        refundTitle: "退款政策", refundBody: "1. <strong>数字商品属性：</strong>账户充值余额属于数字化虚拟商品。一旦支付成功且余额记录到您的账户中，<strong>一律不支持任何理由的退款</strong>。<br><br>2. <strong>拒付惩罚：</strong>如无合理理由发起恶意拒付，平台将永久封禁账号。<br><br>3. <strong>例外情况：</strong>如果因系统故障导致未到账，请保存您的 Order ID 截图并联系 KOOK 管理员人工核实。",
+        orderIdLabel: "订单号", copyBtn: "复制", alertSuccess: "充值成功！感谢您，", successBaseText: "实际入账本金：", successContactText: "请复制上方订单号发送给 KOOK 客服核销入账。"
+      }
+    };
 
-        let currentLang = localStorage.getItem('eve_lang') || 'zh';
-        document.documentElement.lang = currentLang;
+    let currentLang = localStorage.getItem('eve_lang') || 'zh';
+    document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+    const FEE_RATE = 0.07;
 
-        function applyLanguage() {
-            document.getElementById('lang-btn-text').innerText = currentLang === 'zh' ? 'EN / 中' : '中 / EN';
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
-            });
-            const customInput = document.getElementById('custom-amount-input');
-            customInput.placeholder = currentLang === 'zh' ? "请输入金额 (例如: 150)" : "Enter amount (e.g., 150)";
-            const customOption = document.querySelector('#topup-amount option[value="custom"]');
-            if (customOption) customOption.textContent = translations[currentLang].customAmountOption;
-            const loadingText = document.getElementById('paypal-loading-text');
-            if (loadingText && loadingText.getAttribute('data-i18n') === 'sdkFail') {
-                loadingText.innerHTML = translations[currentLang].sdkFail;
-            }
-            const modal = document.getElementById('doc-modal');
-            if (modal && modal.classList.contains('show')) {
-                const type = modal.getAttribute('data-modal-type');
-                if (type) {
-                    document.getElementById('modal-title').innerHTML = translations[currentLang][type + 'Title'];
-                    document.getElementById('modal-body').innerHTML = translations[currentLang][type + 'Body'];
-                }
-            }
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, s => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[s]));
+    }
+    function normalizeAmount(value) {
+      const amount = Number(value);
+      if (!Number.isFinite(amount)) return 0;
+      return Math.min(Math.max(Math.round(amount * 100) / 100, 0), 100000);
+    }
+    function calcAmounts(base) {
+      const baseAmount = normalizeAmount(base);
+      const feeAmount = Math.round(baseAmount * FEE_RATE * 100) / 100;
+      const totalAmount = Math.round((baseAmount + feeAmount) * 100) / 100;
+      return { base: baseAmount.toFixed(2), fee: feeAmount.toFixed(2), total: totalAmount.toFixed(2) };
+    }
+    function getBaseAmount() {
+      const selectVal = document.getElementById('topup-amount').value;
+      if (selectVal === 'custom') return normalizeAmount(document.getElementById('custom-amount-input').value);
+      return normalizeAmount(selectVal);
+    }
+    function applyLanguage() {
+      document.getElementById('lang-btn-text').innerText = currentLang === 'zh' ? 'EN / 中' : '中 / EN';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
+      });
+      const customInput = document.getElementById('custom-amount-input');
+      if (customInput) customInput.placeholder = currentLang === 'zh' ? '请输入金额（例如：150）' : 'Enter amount (e.g., 150)';
+      const customOption = document.querySelector('#topup-amount option[value="custom"]');
+      if (customOption) customOption.textContent = translations[currentLang].customAmountOption;
+      const modal = document.getElementById('doc-modal');
+      if (modal && modal.classList.contains('show')) {
+        const type = modal.getAttribute('data-modal-type');
+        if (type) {
+          document.getElementById('modal-title').innerHTML = translations[currentLang][type + 'Title'];
+          document.getElementById('modal-body').innerHTML = translations[currentLang][type + 'Body'];
         }
-        if (currentLang === 'en') applyLanguage();
+      }
+      const loadingText = document.getElementById('paypal-loading-text');
+      if (loadingText && loadingText.getAttribute('data-i18n') === 'sdkFail') loadingText.innerHTML = translations[currentLang].sdkFail;
+    }
+    function toggleLang() {
+      currentLang = currentLang === 'zh' ? 'en' : 'zh';
+      document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+      localStorage.setItem('eve_lang', currentLang);
+      applyLanguage();
+    }
+    function showModal(type, e) {
+      if (e) e.preventDefault();
+      const modal = document.getElementById('doc-modal');
+      modal.setAttribute('data-modal-type', type);
+      document.getElementById('modal-title').innerHTML = translations[currentLang][type + 'Title'];
+      document.getElementById('modal-body').innerHTML = translations[currentLang][type + 'Body'];
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(e) {
+      if (e) e.preventDefault();
+      const modal = document.getElementById('doc-modal');
+      if (modal) modal.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+    function checkButtonState() {
+      const amount = getBaseAmount();
+      const isAgreed = document.getElementById('agree').checked;
+      const wrapper = document.getElementById('paypal-button-wrapper');
+      const tip = document.getElementById('pay-tip');
+      if (isAgreed && amount >= 1) {
+        wrapper.classList.add('enabled');
+        if (tip) tip.style.display = 'none';
+      } else {
+        wrapper.classList.remove('enabled');
+        if (tip) tip.style.display = 'block';
+      }
+    }
+    function updateDisplay() {
+      const amount = getBaseAmount();
+      const { base, fee, total } = calcAmounts(amount);
+      document.getElementById('display-subtotal').innerText = '$' + base;
+      document.getElementById('display-fee').innerText = '$' + fee;
+      document.getElementById('display-total').innerText = '$' + total;
+      checkButtonState();
+    }
+    function handlePayPalLoadError() {
+      const loadingText = document.getElementById('paypal-loading-text');
+      if (loadingText) {
+        loadingText.setAttribute('data-i18n', 'sdkFail');
+        loadingText.innerHTML = translations[currentLang].sdkFail;
+      }
+      const spinner = document.querySelector('.spinner');
+      if (spinner) spinner.style.display = 'none';
+    }
 
-        function toggleLang() {
-            currentLang = currentLang === 'zh' ? 'en' : 'zh';
-            document.documentElement.lang = currentLang;
-            applyLanguage();
-            localStorage.setItem('eve_lang', currentLang);
-        }
+    window.copyOrderId = function() {
+      const node = document.getElementById('order-id-text');
+      const text = node ? node.textContent : '';
+      const tip = currentLang === 'zh' ? '订单号已复制！' : 'Order ID copied!';
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => alert(tip), () => fallbackCopy(text, tip));
+      } else fallbackCopy(text, tip);
+    };
+    function fallbackCopy(text, tip) {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); alert(tip); } catch (e) { prompt(currentLang === 'zh' ? '请手动复制：' : 'Copy manually:', text); }
+      document.body.removeChild(ta);
+    }
 
-        function showModal(type, e) {
-            e.preventDefault();
-            const modal = document.getElementById('doc-modal');
-            modal.setAttribute('data-modal-type', type);
-            document.getElementById('modal-title').innerHTML = translations[currentLang][type + 'Title'];
-            document.getElementById('modal-body').innerHTML = translations[currentLang][type + 'Body'];
-            modal.classList.add('show');
-            document.body.style.overflow = 'hidden'; 
-        }
-        function closeModal(e) {
-            if(e) e.preventDefault(); 
-            document.getElementById('doc-modal').classList.remove('show');
-            document.body.style.overflow = '';
-        }
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && document.getElementById('doc-modal').classList.contains('show')) closeModal();
+    document.addEventListener('DOMContentLoaded', function() {
+      applyLanguage();
+      document.querySelectorAll('.quick-amounts button').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.quick-amounts button').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          const val = this.getAttribute('data-amount');
+          const selectEl = document.getElementById('topup-amount');
+          const customContainer = document.getElementById('custom-amount-container');
+          if (Array.from(selectEl.options).some(opt => opt.value === val)) {
+            selectEl.value = val; customContainer.style.display = 'none';
+          } else {
+            selectEl.value = 'custom'; customContainer.style.display = 'block'; document.getElementById('custom-amount-input').value = val;
+          }
+          updateDisplay();
         });
-
-        function handlePayPalLoadError() {
-            const loadingText = document.getElementById('paypal-loading-text');
-            if (loadingText) {
-                loadingText.setAttribute('data-i18n', 'sdkFail');
-                loadingText.innerHTML = translations[currentLang].sdkFail;
-            }
-            const spinner = document.querySelector('.spinner');
-            if (spinner) spinner.style.display = 'none';
-        }
-    </script>
-
-    <script onerror="handlePayPalLoadError()" src="https://www.paypal.com/sdk/js?client-id=Aa_Qx88SeUJvU-E6rlR9ybJ58fqb3JbERNwEzLYpP3ovxyzjzWz5LGvq2Pvrf_piVi9NXQOdBem3SCYE&currency=USD&components=buttons,funding-eligibility&enable-funding=venmo,paylater,card"></script>
-    <script>
-        const FEE_RATE = 0.07; 
-
-        function normalizeAmount(value) {
-            const amount = Number(value);
-            if (!Number.isFinite(amount)) return 0;
-            return Math.min(Math.max(Math.round(amount * 100) / 100, 0), 100000);
-        }
-
-        function calcAmounts(base) {
-            const baseAmount = normalizeAmount(base);
-            const feeAmount = Math.round(baseAmount * FEE_RATE * 100) / 100;
-            const totalAmount = Math.round((baseAmount + feeAmount) * 100) / 100;
-            return { base: baseAmount.toFixed(2), fee: feeAmount.toFixed(2), total: totalAmount.toFixed(2) };
-        }
-
-        function getBaseAmount() {
-            const selectVal = document.getElementById('topup-amount').value;
-            if (selectVal === 'custom') {
-                return normalizeAmount(document.getElementById('custom-amount-input').value);
-            }
-            return normalizeAmount(selectVal);
-        }
-
-        function checkButtonState() {
-            const amount = getBaseAmount();
-            const isAgreed = document.getElementById('agree').checked;
-            const wrapper = document.getElementById('paypal-button-wrapper');
-            const tip = document.getElementById('pay-tip');
-            if(isAgreed && amount >= 1) {
-                wrapper.classList.add('enabled');
-                if (tip) tip.style.display = 'none';
-            } else {
-                wrapper.classList.remove('enabled');
-                if (tip) tip.style.display = 'block';
-            }
-        }
-
-        function updateDisplay() {
-            const amount = getBaseAmount();
-            const { base, fee, total } = calcAmounts(amount);
-            document.getElementById('display-subtotal').innerText = '$' + base;
-            document.getElementById('display-fee').innerText = '$' + fee;
-            document.getElementById('display-total').innerText = '$' + total;
-            checkButtonState();
-        }
-
-        document.querySelectorAll('.quick-amounts button').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.quick-amounts button').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                const val = this.getAttribute('data-amount');
-                const selectEl = document.getElementById('topup-amount');
-                const customContainer = document.getElementById('custom-amount-container');
-                if (Array.from(selectEl.options).some(opt => opt.value === val)) {
-                    selectEl.value = val;
-                    customContainer.style.display = 'none';
-                } else {
-                    selectEl.value = 'custom';
-                    customContainer.style.display = 'block';
-                    document.getElementById('custom-amount-input').value = val;
-                }
-                updateDisplay();
-            });
-        });
-
-        document.getElementById('topup-amount').addEventListener('change', function() {
-            const customContainer = document.getElementById('custom-amount-container');
-            document.querySelectorAll('.quick-amounts button').forEach(b => b.classList.remove('active'));
-            const matchingBtn = document.querySelector(`.quick-amounts button[data-amount="${this.value}"]`);
-            if(matchingBtn) matchingBtn.classList.add('active');
-
-            if (this.value === 'custom') {
-                customContainer.style.display = 'block';
-                document.getElementById('custom-amount-input').focus();
-            } else {
-                customContainer.style.display = 'none';
-            }
-            updateDisplay();
-        });
-
-        document.getElementById('custom-amount-input').addEventListener('input', function() {
-            document.querySelectorAll('.quick-amounts button').forEach(b => b.classList.remove('active'));
-            updateDisplay();
-        });
-
-        document.getElementById('custom-amount-input').addEventListener('blur', function() {
-            const v = normalizeAmount(this.value);
-            if (v > 0) {
-                this.value = v.toFixed(2);
-                updateDisplay();
-            }
-        });
-
-        document.getElementById('agree').addEventListener('change', checkButtonState);
+      });
+      document.getElementById('topup-amount').addEventListener('change', function() {
+        const customContainer = document.getElementById('custom-amount-container');
+        document.querySelectorAll('.quick-amounts button').forEach(b => b.classList.remove('active'));
+        const matchingBtn = document.querySelector(`.quick-amounts button[data-amount="${this.value}"]`);
+        if (matchingBtn) matchingBtn.classList.add('active');
+        if (this.value === 'custom') { customContainer.style.display = 'block'; document.getElementById('custom-amount-input').focus(); }
+        else customContainer.style.display = 'none';
         updateDisplay();
+      });
+      document.getElementById('custom-amount-input').addEventListener('input', function() {
+        document.querySelectorAll('.quick-amounts button').forEach(b => b.classList.remove('active'));
+        updateDisplay();
+      });
+      document.getElementById('custom-amount-input').addEventListener('blur', function() {
+        const v = normalizeAmount(this.value);
+        if (v > 0) { this.value = v.toFixed(2); updateDisplay(); }
+      });
+      document.getElementById('agree').addEventListener('change', checkButtonState);
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+      updateDisplay();
+      renderPayPal();
+    });
+  </script>
 
-        function escapeHtml(str) {
-            return String(str).replace(/[&<>"']/g, function(s) {
-                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[s];
-            });
-        }
+  <script src="https://www.paypal.com/sdk/js?client-id=Aa_Qx88SeUJvU-E6rlR9ybJ58fqb3JbERNwEzLYpP3ovxyzjzWz5LGvq2Pvrf_piVi9NXQOdBem3SCYE&currency=USD&components=buttons,funding-eligibility&enable-funding=venmo,paylater,card" onerror="handlePayPalLoadError()"></script>
+  <script>
+    function renderPayPal() {
+      if (typeof paypal === 'undefined') {
+        if ((renderPayPal.retry = (renderPayPal.retry || 0) + 1) < 50) return setTimeout(renderPayPal, 100);
+        handlePayPalLoadError();
+        return;
+      }
+      paypal.Buttons({
+        style: { layout: 'vertical', color: 'blue', shape: 'rect', label: 'pay' },
+        onClick: function(data, actions) {
+          if (!document.getElementById('agree').checked) { alert(translations[currentLang].alertAgree); return actions.reject ? actions.reject() : Promise.reject(); }
+          if (getBaseAmount() < 1) { alert(translations[currentLang].alertInvalidAmount); return actions.reject ? actions.reject() : Promise.reject(); }
+          return actions.resolve();
+        },
+        createOrder: function(data, actions) {
+          const { base, fee, total } = calcAmounts(getBaseAmount());
+          return actions.order.create({
+            intent: 'CAPTURE',
+            purchase_units: [{
+              description: 'Nomi Gaming - VIP Balance Top-Up',
+              soft_descriptor: 'NOMI GAMING',
+              amount: { currency_code: 'USD', value: total, breakdown: { item_total: { currency_code: 'USD', value: base }, handling: { currency_code: 'USD', value: fee } } },
+              items: [{ name: 'Nomi Gaming VIP Balance', description: 'Digital account balance top-up', quantity: '1', unit_amount: { currency_code: 'USD', value: base }, category: 'DIGITAL_GOODS' }]
+            }],
+            application_context: { shipping_preference: 'NO_SHIPPING', user_action: 'PAY_NOW', brand_name: 'Nomi Gaming' }
+          });
+        },
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            let transactionId = data.orderID;
+            let basePaid = calcAmounts(getBaseAmount()).base;
+            let givenName = 'Customer';
+            try {
+              const pu = details.purchase_units && details.purchase_units[0];
+              const capture = pu && pu.payments && pu.payments.captures && pu.payments.captures[0];
+              if (capture && capture.id) transactionId = capture.id;
+              if (pu && pu.amount && pu.amount.breakdown && pu.amount.breakdown.item_total) basePaid = pu.amount.breakdown.item_total.value;
+              if (details.payer && details.payer.name && details.payer.name.given_name) givenName = details.payer.name.given_name;
+            } catch (e) { console.warn('Parse failed:', e); }
 
-        window.copyOrderId = function() {
-            const text = document.getElementById('order-id-text').textContent;
-            const tip = currentLang === 'zh' ? '订单号已复制！' : 'Order ID copied!';
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text).then(() => alert(tip), () => fallbackCopy(text, tip));
-            } else {
-                fallbackCopy(text, tip);
-            }
-        }
-        function fallbackCopy(text, tip) {
-            const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-            document.body.appendChild(ta); ta.select();
-            try { document.execCommand('copy'); alert(tip); } catch (e) { prompt(currentLang === 'zh' ? '请手动复制：' : 'Copy manually:', text); }
-            document.body.removeChild(ta);
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            function renderPayPal() {
-                if (typeof paypal === 'undefined') {
-                    if ((renderPayPal.retry = (renderPayPal.retry || 0) + 1) < 50) return setTimeout(renderPayPal, 100);
-                    const loadingText = document.getElementById('paypal-loading-text');
-                    loadingText.setAttribute('data-i18n', 'sdkFail');
-                    loadingText.innerHTML = translations[currentLang].sdkFail;
-                    document.querySelector('.spinner').style.display = 'none';
-                    return;
-                }
-                
-                paypal.Buttons({
-                    style: { layout: 'vertical', color: 'blue', shape: 'rect', label: 'pay' },
-                    onClick: function(data, actions) {
-                        if (!document.getElementById('agree').checked) { alert(translations[currentLang].alertAgree); return actions.reject ? actions.reject() : Promise.reject(); }
-                        if (getBaseAmount() < 1) { alert(translations[currentLang].alertInvalidAmount); return actions.reject ? actions.reject() : Promise.reject(); }
-                        return actions.resolve();
-                    },
-                    createOrder: function(data, actions) {
-                        const { base, fee, total } = calcAmounts(getBaseAmount());
-                        return actions.order.create({
-                            intent: 'CAPTURE',
-                            purchase_units: [{
-                                description: "Nomi Gaming - VIP Balance Top-Up",
-                                soft_descriptor: "NOMI GAMING",
-                                amount: { currency_code: 'USD', value: total, breakdown: { item_total: { currency_code: 'USD', value: base }, handling: { currency_code: 'USD', value: fee } } },
-                                items: [{ name: 'Nomi Gaming VIP Balance', description: 'Digital account balance top-up', quantity: '1', unit_amount: { currency_code: 'USD', value: base }, category: 'DIGITAL_GOODS' }]
-                            }],
-                            application_context: { shipping_preference: 'NO_SHIPPING', user_action: 'PAY_NOW', brand_name: 'Nomi Gaming' }
-                        });
-                    },
-                    onApprove: function(data, actions) {
-                        return actions.order.capture().then(function(details) {
-                            let transactionId = data.orderID; let basePaid = calcAmounts(getBaseAmount()).base; let givenName = 'Customer';
-                            try {
-                                const pu = details.purchase_units && details.purchase_units[0];
-                                if (pu && pu.payments && pu.payments.captures && pu.payments.captures[0]) transactionId = pu.payments.captures[0].id;
-                                if (pu && pu.amount && pu.amount.breakdown && pu.amount.breakdown.item_total) basePaid = pu.amount.breakdown.item_total.value;
-                                if (details.payer && details.payer.name && details.payer.name.given_name) givenName = details.payer.name.given_name;
-                            } catch (e) { console.warn('Parse failed:', e); }
-
-                            const safeTransactionId = escapeHtml(transactionId);
-                            const safeBasePaid = escapeHtml(basePaid);
-                            const safeGivenName = escapeHtml(givenName);
-
-                            const successHtml = `
-                                <div id="success-panel" style="background:#f8fafc; border:1px solid var(--primary); border-radius:12px; padding:25px; margin-top:20px; text-align:left; animation: fadeIn 0.5s ease;">
-                                    <h3 style="color:var(--primary); margin:0 0 15px; font-size:18px; font-weight:700;">✅ ${translations[currentLang].alertSuccess}${safeGivenName}</h3>
-                                    <p style="margin:8px 0; font-size:14px; color:#1e293b;"><strong>${translations[currentLang].orderIdLabel}:</strong> 
-                                        <code id="order-id-text" style="background:#fff; padding:4px 8px; border-radius:4px; user-select:all; border:1px solid #e2e8f0; font-weight:600;">${safeTransactionId}</code>
-                                        <button onclick="copyOrderId()" style="margin-left:8px; padding:4px 10px; border:1px solid var(--primary); background:#fff; border-radius:6px; cursor:pointer; color:var(--primary); font-weight:600; font-size:13px;">📋 ${translations[currentLang].copyBtn}</button>
-                                    </p>
-                                    <p style="margin:12px 0; font-size:14px; color:#1e293b;"><strong>${translations[currentLang].successBaseText}</strong> <span style="color:var(--primary); font-weight:700;">$${safeBasePaid} USD</span></p>
-                                    <p style="color:#0f172a; margin-top:15px; font-size:13.5px; font-weight:600; line-height:1.6; background:#e0e7ff; padding:10px; border-radius:8px;">${translations[currentLang].successContactText}</p>
-                                </div>
-                            `;
-                            document.getElementById('paypal-button-wrapper').style.display = 'none';
-                            document.querySelector('.checkbox-container').style.display = 'none';
-                            document.querySelector('.container').insertAdjacentHTML('beforeend', successHtml);
-                            document.getElementById('success-panel').scrollIntoView({behavior:'smooth', block: 'center'});
-                        });
-                    },
-                    onCancel: function() { alert(translations[currentLang].alertCancel); },
-                    onError: function(err) { console.error('PayPal Error:', err); alert(translations[currentLang].alertError); }
-                }).render('#paypal-button-container').then(function() {
-                    document.getElementById('paypal-loading').style.display = 'none';
-                });
-            }
-            renderPayPal();
-        });
-    </script>
+            const successHtml = `
+              <div id="success-panel" style="background:linear-gradient(180deg,#f6fbff,#fff7fc); border:1px solid rgba(91,140,255,.22); border-radius:24px; padding:24px; margin-top:22px; text-align:left; animation: fadeIn .5s ease;">
+                <h3 style="color:#4f7cff; margin:0 0 15px; font-size:18px; font-weight:900;">✅ ${translations[currentLang].alertSuccess}${escapeHtml(givenName)}</h3>
+                <p style="margin:8px 0; font-size:14px; color:#1e293b;"><strong>${translations[currentLang].orderIdLabel}:</strong>
+                  <code id="order-id-text" style="background:#fff; padding:5px 9px; border-radius:8px; user-select:all; border:1px solid #e2e8f0; font-weight:800;">${escapeHtml(transactionId)}</code>
+                  <button onclick="copyOrderId()" style="margin-left:8px; padding:6px 11px; border:1px solid #5b8cff; background:#fff; border-radius:10px; cursor:pointer; color:#4f7cff; font-weight:900; font-size:13px;">📋 ${translations[currentLang].copyBtn}</button>
+                </p>
+                <p style="margin:12px 0; font-size:14px; color:#1e293b;"><strong>${translations[currentLang].successBaseText}</strong> <span style="color:#4f7cff; font-weight:900;">$${escapeHtml(basePaid)} USD</span></p>
+                <p style="color:#22304a; margin-top:15px; font-size:13.5px; font-weight:800; line-height:1.7; background:#eef6ff; padding:12px; border-radius:16px;">${translations[currentLang].successContactText}</p>
+              </div>`;
+            document.getElementById('paypal-button-wrapper').style.display = 'none';
+            document.querySelector('.checkbox-container').style.display = 'none';
+            const tip = document.getElementById('pay-tip'); if (tip) tip.style.display = 'none';
+            document.querySelector('.checkout-card').insertAdjacentHTML('beforeend', successHtml);
+            document.getElementById('success-panel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          });
+        },
+        onCancel: function() { alert(translations[currentLang].alertCancel); },
+        onError: function(err) { console.error('PayPal Error:', err); alert(translations[currentLang].alertError); }
+      }).render('#paypal-button-container').then(function() {
+        const loading = document.getElementById('paypal-loading');
+        if (loading) loading.style.display = 'none';
+      });
+    }
+  </script>
 </body>
 </html>
