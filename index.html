@@ -64,7 +64,7 @@
       height: 520px;
       background: radial-gradient(circle, rgba(91,140,255,.16), transparent 67%);
       pointer-events: none;
-      z-index: -1;
+      z-1: -1;
       filter: blur(10px);
     }
 
@@ -201,9 +201,8 @@
     .quick-amounts button { min-height: 54px; border: 1px solid rgba(91,140,255,.18); border-radius: 18px; background: rgba(255,255,255,.72); color: #53627a; font-size: 16px; font-weight: 950; cursor: pointer; transition: .2s ease; }
     .quick-amounts button:hover { transform: translateY(-1px); border-color: rgba(91,140,255,.45); }
     .quick-amounts button.active { background: linear-gradient(135deg, #5b8cff, #82d9ff); color: #fff; box-shadow: 0 16px 28px rgba(91,140,255,.24); }
-    select, input[type="number"] { width: 100%; min-height: 56px; padding: 0 16px; border-radius: 18px; border: 1px solid rgba(91,140,255,.18); background: rgba(255,255,255,.82); color: #172033; font-size: 16px; font-weight: 900; outline: none; transition: .2s ease; }
-    select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2368758c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em; }
-    select:focus, input[type="number"]:focus { border-color: rgba(91,140,255,.8); box-shadow: 0 0 0 4px rgba(91,140,255,.12); }
+    input[type="number"] { width: 100%; min-height: 56px; padding: 0 16px; border-radius: 18px; border: 1px solid rgba(91,140,255,.18); background: rgba(255,255,255,.82); color: #172033; font-size: 16px; font-weight: 900; outline: none; transition: .2s ease; }
+    input[type="number"]:focus { border-color: rgba(91,140,255,.8); box-shadow: 0 0 0 4px rgba(91,140,255,.12); }
     input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
     input[type="number"] { -moz-appearance: textfield; }
     #custom-amount-container { display: none; margin-top: 12px; animation: fadeIn .24s ease; }
@@ -363,19 +362,9 @@
             <button type="button" data-amount="50" class="active">$50</button>
             <button type="button" data-amount="100">$100</button>
             <button type="button" data-amount="500">$500</button>
-            <button type="button" data-amount="1000">$1,000</button>
+            <button type="button" data-amount="custom" data-i18n="customAmountOption">自定义金额</button>
           </div>
-          <select id="topup-amount" aria-label="选择充值金额">
-            <option value="50">$50.00</option>
-            <option value="100">$100.00</option>
-            <option value="300">$300.00</option>
-            <option value="500">$500.00</option>
-            <option value="1000">$1,000.00</option>
-            <option value="3000">$3,000.00</option>
-            <option value="5000">$5,000.00</option>
-            <option value="10000">$10,000.00</option>
-            <option value="custom" data-i18n="customAmountOption">自定义金额</option>
-          </select>
+          
           <div id="custom-amount-container"><input type="number" id="custom-amount-input" min="1" max="100000" step="1" inputmode="decimal" placeholder="请输入金额（例如：150）" aria-label="自定义充值金额" /></div>
 
           <div class="fee-summary">
@@ -399,7 +388,7 @@
           <p id="pay-tip" data-i18n="payTip">请先勾选服务条款与退款政策后继续支付</p>
 
           <div id="paypal-button-wrapper">
-            <div id="paypal-loading"><div class="spinner"></div><span id="paypal-loading-text" data-i18n="loadingPay">正在加载安全支付环境…</span></div>
+            <div id="paypal-loading"><div class="spinner"></div><span id="paypal-loading-text" data-i18n="loadingPay">正在加载安全支付 environment…</span></div>
             <div id="paypal-button-container"></div>
           </div>
         </div>
@@ -488,9 +477,11 @@
       return { base: baseAmount.toFixed(2), fee: feeAmount.toFixed(2), total: totalAmount.toFixed(2) };
     }
     function getBaseAmount() {
-      const selectVal = document.getElementById('topup-amount').value;
-      if (selectVal === 'custom') return normalizeAmount(document.getElementById('custom-amount-input').value);
-      return normalizeAmount(selectVal);
+      const activeBtn = document.querySelector('.quick-amounts button.active');
+      if (!activeBtn) return 0;
+      const val = activeBtn.getAttribute('data-amount');
+      if (val === 'custom') return normalizeAmount(document.getElementById('custom-amount-input').value);
+      return normalizeAmount(val);
     }
     function applyLanguage() {
       document.getElementById('lang-btn-text').innerText = currentLang === 'zh' ? 'EN / 中' : '中 / EN';
@@ -500,8 +491,7 @@
       });
       const customInput = document.getElementById('custom-amount-input');
       if (customInput) customInput.placeholder = currentLang === 'zh' ? '请输入金额（例如：150）' : 'Enter amount (e.g., 150)';
-      const customOption = document.querySelector('#topup-amount option[value="custom"]');
-      if (customOption) customOption.textContent = translations[currentLang].customAmountOption;
+      
       const modal = document.getElementById('doc-modal');
       if (modal && modal.classList.contains('show')) {
         const type = modal.getAttribute('data-modal-type');
@@ -588,27 +578,23 @@
           document.querySelectorAll('.quick-amounts button').forEach(b => b.classList.remove('active'));
           this.classList.add('active');
           const val = this.getAttribute('data-amount');
-          const selectEl = document.getElementById('topup-amount');
           const customContainer = document.getElementById('custom-amount-container');
-          if (Array.from(selectEl.options).some(opt => opt.value === val)) {
-            selectEl.value = val; customContainer.style.display = 'none';
+          if (val === 'custom') {
+            customContainer.style.display = 'block';
+            document.getElementById('custom-amount-input').focus();
           } else {
-            selectEl.value = 'custom'; customContainer.style.display = 'block'; document.getElementById('custom-amount-input').value = val;
+            customContainer.style.display = 'none';
           }
           updateDisplay();
         });
       });
-      document.getElementById('topup-amount').addEventListener('change', function() {
-        const customContainer = document.getElementById('custom-amount-container');
-        document.querySelectorAll('.quick-amounts button').forEach(b => b.classList.remove('active'));
-        const matchingBtn = document.querySelector(`.quick-amounts button[data-amount="${this.value}"]`);
-        if (matchingBtn) matchingBtn.classList.add('active');
-        if (this.value === 'custom') { customContainer.style.display = 'block'; document.getElementById('custom-amount-input').focus(); }
-        else customContainer.style.display = 'none';
-        updateDisplay();
-      });
+      
       document.getElementById('custom-amount-input').addEventListener('input', function() {
-        document.querySelectorAll('.quick-amounts button').forEach(b => b.classList.remove('active'));
+        const customBtn = document.querySelector('.quick-amounts button[data-amount="custom"]');
+        if (customBtn) {
+          document.querySelectorAll('.quick-amounts button').forEach(b => b.classList.remove('active'));
+          customBtn.classList.add('active');
+        }
         updateDisplay();
       });
       document.getElementById('custom-amount-input').addEventListener('blur', function() {
